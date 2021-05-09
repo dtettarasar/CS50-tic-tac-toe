@@ -1,17 +1,24 @@
 console.log("hello world");
 
-let popUp = document.querySelector("#pop-up");
-let onePGameBtn = document.querySelector("#play-1p");
-let twoPGameBtn = document.querySelector("#play-2p");
+function mainScript() {
 
-function startGame(playerNum) {
-    //popUp.style.display = "none";
-    console.log("click");
+    let popUp = document.querySelector("#pop-up");
+    let onePGameBtn = document.querySelector("#play-1p");
+    let twoPGameBtn = document.getElementById("play-2p");
+    
+    function startGame(playerNum) {
+        popUp.style.display = "none";
+        console.log("click" + playerNum);
+    }
+    
+    onePGameBtn.addEventListener("click", function(){
+        startGame(1);
+    });
+    
+    twoPGameBtn.addEventListener("click", function(){
+        startGame(2);
+    });
+
 }
 
-console.log(popUp);
-console.log(onePGameBtn);
-console.log(twoPGameBtn);
-
-//onePGameBtn.addEventListener("click", startGame(1));
-
+window.addEventListener("load", mainScript);
