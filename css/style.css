@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+
 body
 {
     line-height: 1.5;
@@ -5,6 +7,7 @@ body
     display: flex;
     justify-content: center;
     background-color: #ecf0f1;
+    font-family: 'Kalam', cursive;
 }
 
 /* style pop up */
@@ -23,7 +26,7 @@ body
 .pop-up-title
 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 .pop-up-content
@@ -38,7 +41,7 @@ body
     width: 100%;
     text-align: center;
     padding: 20px;
-    font-size: 2rem;
+    font-size: 2.4rem;
 }
 
 .pop-up-btn
@@ -49,6 +52,7 @@ body
     background-color: #ecf0f1;
     border: 4px solid;
     border-radius: 8px;
+    font-size: 2rem;
 }
 
 #play-1p:hover,
