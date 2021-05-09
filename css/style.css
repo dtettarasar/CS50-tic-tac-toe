@@ -7,12 +7,7 @@ body
     background-color: #ecf0f1;
 }
 
-/*
-h1
-{
-    margin-top: 0 !important;
-    padding-top: 0.67em;
-}*/
+/* style pop up */
 
 #pop-up
 {
@@ -22,7 +17,15 @@ h1
     color:#ecf0f1;
     padding:50px;
     border-radius: 15px;
+    box-shadow: 2px 3px 20px 1px rgba(0, 0, 0, 0.17);
 }
+
+.pop-up-content
+{
+    display: flex;
+}
+
+/* end style pop up */
 
 /* style for the grid */
 
