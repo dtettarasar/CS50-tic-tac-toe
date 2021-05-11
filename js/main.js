@@ -5,6 +5,18 @@ function mainScript() {
     let popUp = document.querySelector("#pop-up");
     let onePGameBtn = document.querySelector("#play-1p");
     let twoPGameBtn = document.getElementById("play-2p");
+
+    //constructor for the players
+    function Player(number, turn) {
+        this.number = number;
+        this.turn = turn;
+    }
+
+    let playerOne = new Player(1, true);
+    let playerTwo = new Player(2, false);
+
+    console.log(playerOne);
+    console.log(playerTwo);
     
     function startGame(playerNum) {
         popUp.style.display = "none";
