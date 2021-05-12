@@ -15,18 +15,25 @@ function mainScript() {
         this.turn = turn;
         this.symbol = symbol;
         this.choices = [];
+        this.addSymbol = function(caseId) {
+            console.log("selected case" + caseId);
+        }
+        this.updateTurn = function() {
+            this.turn = !this.turn;
+        }
     }
 
+    //create the players
     let playerOne = new Player(1, true, "circle");
     let playerTwo = new Player(2, false, "cross");
-
-    //console.log(playerOne.choices);
-    //console.log(playerTwo);
 
     function loadCaseEvnt() {
         for(let i=0; i< cases.length; i++) {
             cases[i].addEventListener("click", function(){
                 console.log("click on case" + i);
+                playerOne.updateTurn();
+                playerTwo.updateTurn();
+                console.log(playerOne, playerTwo);
             });
         }
     }
