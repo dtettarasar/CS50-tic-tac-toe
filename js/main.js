@@ -7,7 +7,16 @@ function mainScript() {
     let twoPGameBtn = document.getElementById("play-2p");
     let cases = Array.from(document.querySelectorAll("[id^=case]"));
 
-    //console.log(cases);
+    const victories = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ];
 
     //constructor for the players
     function Player(number, turn, symbol) {
