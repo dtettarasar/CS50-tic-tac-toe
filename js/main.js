@@ -16,24 +16,42 @@ function mainScript() {
         this.symbol = symbol;
         this.choices = [];
         this.addSymbol = function(caseId) {
-            console.log("selected case" + caseId);
+            console.log("player " + this.number + " has selected case " + caseId);
         }
         this.updateTurn = function() {
             this.turn = !this.turn;
         }
     }
 
-    //create the players
+    // create the players
     let playerOne = new Player(1, true, "circle");
     let playerTwo = new Player(2, false, "cross");
+
+    // handle a game
+    function handleChoice(index) {
+        // handle player's choice & turns
+
+        if (playerOne.turn) {
+            playerOne.addSymbol(index);
+        } else {
+            playerTwo.addSymbol(index);
+        }
+
+        playerOne.updateTurn();
+        playerTwo.updateTurn();
+    }
+
+    //check result after a players's choice
+    function checkResult() {
+        // check result, if a player won or if draw, each time after a player made a choice
+        console.log("todo");
+    }
 
     function loadCaseEvnt() {
         for(let i=0; i< cases.length; i++) {
             cases[i].addEventListener("click", function(){
-                console.log("click on case" + i);
-                playerOne.updateTurn();
-                playerTwo.updateTurn();
-                console.log(playerOne, playerTwo);
+                handleChoice(i);
+                checkResult();
             });
         }
     }
