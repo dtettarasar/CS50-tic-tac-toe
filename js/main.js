@@ -84,9 +84,6 @@ function mainScript() {
     
     function startGame(playerNum) {
         popUp.style.display = "none";
-
-        // console.log("click" + playerNum);
-
         loadCaseEvnt();
     }
     
