@@ -16,7 +16,14 @@ function mainScript() {
         this.symbol = symbol;
         this.choices = [];
         this.addSymbol = function(caseId) {
-            console.log("player " + this.number + " has selected case " + caseId);
+
+            // make sure a player doesn't make a choice only once
+            if (!this.choices.includes(caseId)) {
+                this.choices.push(caseId);
+            }
+
+            console.log("player " + this.number + " choices:");
+            console.log(this.choices);
         }
         this.updateTurn = function() {
             this.turn = !this.turn;
