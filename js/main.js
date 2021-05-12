@@ -38,9 +38,9 @@ function mainScript() {
     function handleChoice(index) {
         // handle player's choice & turns
 
-        if (playerOne.turn) {
+        if (playerOne.turn && !playerTwo.choices.includes(index)) {
             playerOne.addSymbol(index);
-        } else {
+        } else if (!playerOne.choices.includes(index)) {
             playerTwo.addSymbol(index);
         }
 
