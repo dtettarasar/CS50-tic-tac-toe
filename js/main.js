@@ -19,11 +19,13 @@ function mainScript() {
 
     //constructor for the players
     function Player(number, turn, symbol, gotVictory) {
+        
         this.number = number;
         this.turn = turn;
         this.symbol = symbol;
         this.choices = [];
         this.gotVictory = gotVictory;
+
         this.createSymbol = function(caseId) {
             const imgElem = document.createElement("img");
             const imgLink = "/img/" + this.symbol + ".svg";
@@ -31,7 +33,7 @@ function mainScript() {
             imgElem.classList.add("symbol");
             cases[caseId].appendChild(imgElem);
         }
-        //this.symbolElem = this.createSymbol();
+
         this.recordChoices = function(caseId) {
             // make sure a player make a choice only once
             if (!chosenCases.includes(caseId)) {
@@ -39,9 +41,11 @@ function mainScript() {
                 chosenCases.push(caseId);
             }
         }
+
         this.updateTurn = function() {
             this.turn = !this.turn;
         }
+
         this.victoryLookUp = function() {
             //check if a player got the victory
             // we check if a player got one of the possible winning set of choices
