@@ -24,6 +24,13 @@ function mainScript() {
         this.symbol = symbol;
         this.choices = [];
         this.gotVictory = gotVictory;
+        this.createSymbol = function() {
+            const imgElem = document.createElement("img");
+            const imgLink = "img/" + this.symbol + ".svg";
+            imgElem.setAttribute("href", imgLink);
+            return imgElem;
+        }
+        this.symbolElem = this.createSymbol();
         this.addSymbol = function(caseId) {
             // make sure a player make a choice only once
             if (!chosenCases.includes(caseId)) {
@@ -54,6 +61,9 @@ function mainScript() {
     // create the players
     let playerOne = new Player(1, true, "circle", false);
     let playerTwo = new Player(2, false, "cross", false);
+
+    console.log(playerOne.symbolElem);
+    console.log(playerTwo);
 
     function playersTurn() {
         playerOne.updateTurn();
