@@ -99,7 +99,7 @@ body
 [id^=case]
 {
     border: 4px solid #bdc3c7;
-    height: auto;
+    height: 33.3333%;
     width: 33.3333%;
     display: flex;
     justify-content: center;
