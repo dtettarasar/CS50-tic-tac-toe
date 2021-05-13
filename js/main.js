@@ -30,11 +30,6 @@ function mainScript() {
                 this.choices.push(caseId);
                 chosenCases.push(caseId);
             }
-
-            console.log("player " + this.number + " choices:");
-            console.log(this.choices);
-            console.log("chosen cases");
-            console.log(chosenCases);
         }
         this.updateTurn = function() {
             this.turn = !this.turn;
@@ -65,11 +60,16 @@ function mainScript() {
 
     }
 
+    function victoryLookUp(player) {
+        console.log(player.number + " : " + player.choices);
+    }
+
     //check result after a players's choice
     function checkResult() {
         // check result, if a player won or if draw, each time after a player made a choice
 
-
+        victoryLookUp(playerOne);
+        victoryLookUp(playerTwo);
         
         if (chosenCases.length == 9) {
             console.log("Draw!");
