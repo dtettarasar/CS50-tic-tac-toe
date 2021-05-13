@@ -26,8 +26,8 @@ function mainScript() {
         this.gotVictory = gotVictory;
         this.createSymbol = function() {
             const imgElem = document.createElement("img");
-            const imgLink = "img/" + this.symbol + ".svg";
-            imgElem.setAttribute("href", imgLink);
+            const imgLink = "/img/" + this.symbol + ".svg";
+            imgElem.setAttribute("src", imgLink);
             return imgElem;
         }
         this.symbolElem = this.createSymbol();
@@ -36,6 +36,7 @@ function mainScript() {
             if (!chosenCases.includes(caseId)) {
                 this.choices.push(caseId);
                 chosenCases.push(caseId);
+                cases[caseId].appendChild(this.symbolElem);
             }
         }
         this.updateTurn = function() {
