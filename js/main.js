@@ -25,7 +25,7 @@ function mainScript() {
         this.choices = [];
         this.addSymbol = function(caseId) {
 
-            // make sure a player doesn't make a choice only once
+            // make sure a player make a choice only once
             if (!chosenCases.includes(caseId)) {
                 this.choices.push(caseId);
                 chosenCases.push(caseId);
@@ -68,8 +68,11 @@ function mainScript() {
     //check result after a players's choice
     function checkResult() {
         // check result, if a player won or if draw, each time after a player made a choice
+
+
+        
         if (chosenCases.length == 9) {
-            console.log("game over!");
+            console.log("Draw!");
         }
     }
 
