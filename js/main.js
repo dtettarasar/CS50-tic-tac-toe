@@ -32,7 +32,7 @@ function mainScript() {
             cases[caseId].appendChild(imgElem);
         }
         //this.symbolElem = this.createSymbol();
-        this.addSymbol = function(caseId) {
+        this.recordChoices = function(caseId) {
             // make sure a player make a choice only once
             if (!chosenCases.includes(caseId)) {
                 this.choices.push(caseId);
@@ -76,12 +76,12 @@ function mainScript() {
         // handle player's choice & turns
 
         if (playerOne.turn && !chosenCases.includes(index)) {
-            playerOne.addSymbol(index);
+            playerOne.recordChoices(index);
             playerOne.createSymbol(index);
             playersTurn();
 
         } else if (!chosenCases.includes(index)) {
-            playerTwo.addSymbol(index);
+            playerTwo.recordChoices(index);
             playerTwo.createSymbol(index);
             playersTurn();
         }
