@@ -18,11 +18,12 @@ function mainScript() {
     ];
 
     //constructor for the players
-    function Player(number, turn, symbol) {
+    function Player(number, turn, symbol, gotVictory) {
         this.number = number;
         this.turn = turn;
         this.symbol = symbol;
         this.choices = [];
+        this.gotVictory = gotVictory;
         this.addSymbol = function(caseId) {
             // make sure a player make a choice only once
             if (!chosenCases.includes(caseId)) {
@@ -36,12 +37,23 @@ function mainScript() {
         this.victoryLookUp = function() {
             //check if a player got the victory
             console.log(this.number + " : " + this.choices);
+
+            // we check if a player got one of the possible winning set of choices
+            for (let i = 0; i < victories.length; i++) {
+                let vicChecker = victories[i].every(value => this.choices.includes(value));
+                if (vicChecker) {
+                    this.gotVictory = vicChecker;
+                    break;
+                }
+            }
+
+            console.log(this.gotVictory);
         }
     }
 
     // create the players
-    let playerOne = new Player(1, true, "circle");
-    let playerTwo = new Player(2, false, "cross");
+    let playerOne = new Player(1, true, "circle", false);
+    let playerTwo = new Player(2, false, "cross", false);
 
     function playersTurn() {
         playerOne.updateTurn();
@@ -69,8 +81,12 @@ function mainScript() {
 
         playerOne.victoryLookUp();
         playerTwo.victoryLookUp();
-        
-        if (chosenCases.length == 9) {
+
+        if (playerOne.gotVictory) {
+            console.log("player One win!");
+        } else if (playerTwo.gotVictory) {
+            console.log("player Two win!");
+        } else if (chosenCases.length == 9) {
             console.log("Draw!");
         }
     }
