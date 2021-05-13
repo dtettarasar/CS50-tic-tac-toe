@@ -24,7 +24,6 @@ function mainScript() {
         this.symbol = symbol;
         this.choices = [];
         this.addSymbol = function(caseId) {
-
             // make sure a player make a choice only once
             if (!chosenCases.includes(caseId)) {
                 this.choices.push(caseId);
@@ -33,6 +32,10 @@ function mainScript() {
         }
         this.updateTurn = function() {
             this.turn = !this.turn;
+        }
+        this.victoryLookUp = function() {
+            //check if a player got the victory
+            console.log(this.number + " : " + this.choices);
         }
     }
 
@@ -60,16 +63,12 @@ function mainScript() {
 
     }
 
-    function victoryLookUp(player) {
-        console.log(player.number + " : " + player.choices);
-    }
-
     //check result after a players's choice
     function checkResult() {
         // check result, if a player won or if draw, each time after a player made a choice
 
-        victoryLookUp(playerOne);
-        victoryLookUp(playerTwo);
+        playerOne.victoryLookUp();
+        playerTwo.victoryLookUp();
         
         if (chosenCases.length == 9) {
             console.log("Draw!");
