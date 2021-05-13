@@ -44,8 +44,6 @@ function mainScript() {
         }
         this.victoryLookUp = function() {
             //check if a player got the victory
-            console.log(this.number + " : " + this.choices);
-
             // we check if a player got one of the possible winning set of choices
             for (let i = 0; i < victories.length; i++) {
                 let vicChecker = victories[i].every(value => this.choices.includes(value));
@@ -54,17 +52,12 @@ function mainScript() {
                     break;
                 }
             }
-
-            console.log(this.gotVictory);
         }
     }
 
     // create the players
     let playerOne = new Player(1, true, "circle", false);
     let playerTwo = new Player(2, false, "cross", false);
-
-    console.log(playerOne.symbolElem);
-    console.log(playerTwo);
 
     function playersTurn() {
         playerOne.updateTurn();
