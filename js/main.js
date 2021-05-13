@@ -24,19 +24,19 @@ function mainScript() {
         this.symbol = symbol;
         this.choices = [];
         this.gotVictory = gotVictory;
-        this.createSymbol = function() {
+        this.createSymbol = function(caseId) {
             const imgElem = document.createElement("img");
             const imgLink = "/img/" + this.symbol + ".svg";
             imgElem.setAttribute("src", imgLink);
-            return imgElem;
+            imgElem.classList.add("symbol");
+            cases[caseId].appendChild(imgElem);
         }
-        this.symbolElem = this.createSymbol();
+        //this.symbolElem = this.createSymbol();
         this.addSymbol = function(caseId) {
             // make sure a player make a choice only once
             if (!chosenCases.includes(caseId)) {
                 this.choices.push(caseId);
                 chosenCases.push(caseId);
-                cases[caseId].appendChild(this.symbolElem);
             }
         }
         this.updateTurn = function() {
@@ -77,10 +77,12 @@ function mainScript() {
 
         if (playerOne.turn && !chosenCases.includes(index)) {
             playerOne.addSymbol(index);
+            playerOne.createSymbol(index);
             playersTurn();
 
         } else if (!chosenCases.includes(index)) {
             playerTwo.addSymbol(index);
+            playerTwo.createSymbol(index);
             playersTurn();
         }
 
