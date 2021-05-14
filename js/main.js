@@ -69,7 +69,7 @@ function mainScript() {
     }
 
     // handle a game
-    function handleChoice(index) {
+    function handleChoiceTwoPlayers(index) {
         // handle player's choice & turns
 
         if (playerOne.turn && !chosenCases.includes(index)) {
@@ -101,18 +101,22 @@ function mainScript() {
         }
     }
 
-    function loadCaseEvnt() {
+    function loadCaseEvnt(playerNum) {
         for(let i=0; i< cases.length; i++) {
-            cases[i].addEventListener("click", function(){
-                handleChoice(i);
-                checkResult();
+            cases[i].addEventListener("click", function() {
+                if (playerNum == 2) {
+                    handleChoiceTwoPlayers(i);
+                    checkResult();
+                } else if (playerNum == 1) {
+                    console.log("create game for one player");
+                }
             });
         }
     }
     
     function startGame(playerNum) {
         popUp.style.display = "none";
-        loadCaseEvnt();
+        loadCaseEvnt(playerNum);
     }
     
     onePGameBtn.addEventListener("click", function(){
