@@ -69,13 +69,7 @@ function mainScript() {
         playerTwo.updateTurn();
     }
 
-    // handle a game for 1 player
-    function handleChoiceOnePlayer(index) {
-        console.log("create game for one player");
-    }
-
-    // handle a game for 2 players
-    function handleChoiceTwoPlayers(index) {
+    function handleChoice(index, playerNum) {
         // handle player's choice & turns
 
         if (playerOne.turn && !chosenCases.includes(index)) {
@@ -83,10 +77,14 @@ function mainScript() {
             playerOne.createSymbol(index);
             playersTurn();
 
-        } else if (!chosenCases.includes(index)) {
+        } else if (!chosenCases.includes(index) && playerNum == 2) {
             playerTwo.recordChoices(index);
             playerTwo.createSymbol(index);
             playersTurn();
+
+        } else if (!chosenCases.includes(index) && playerNum == 1) {
+            // write the function for the AI
+            console.log("todo");
         }
 
     }
@@ -110,13 +108,8 @@ function mainScript() {
     function loadCaseEvnt(playerNum) {
         for(let i=0; i< cases.length; i++) {
             cases[i].addEventListener("click", function() {
-                if (playerNum == 2) {
-                    handleChoiceTwoPlayers(i);
+                    handleChoice(i, playerNum);
                     checkResult();
-                } else if (playerNum == 1) {
-                    handleChoiceOnePlayer(i);
-                    checkResult();
-                }
             });
         }
     }
