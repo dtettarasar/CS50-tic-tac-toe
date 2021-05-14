@@ -6,6 +6,7 @@ function mainScript() {
     let cases = Array.from(document.querySelectorAll("[id^=case]"));
     let chosenCases = [];
 
+    // this array store all the cases combinations that gives the victory
     const victories = [
         [0,1,2],
         [3,4,5],
@@ -17,7 +18,7 @@ function mainScript() {
         [2,4,6]
     ];
 
-    //constructor for the players
+    // constructor for the players
     function Player(number, turn, symbol, gotVictory) {
         
         this.number = number;
@@ -47,7 +48,7 @@ function mainScript() {
         }
 
         this.victoryLookUp = function() {
-            //check if a player got the victory
+            // check if a player got the victory
             // we check if a player got one of the possible winning set of choices
             for (let i = 0; i < victories.length; i++) {
                 let vicChecker = victories[i].every(value => this.choices.includes(value));
@@ -68,7 +69,12 @@ function mainScript() {
         playerTwo.updateTurn();
     }
 
-    // handle a game
+    // handle a game for 1 player
+    function handleChoiceOnePlayer(index) {
+        console.log("create game for one player");
+    }
+
+    // handle a game for 2 players
     function handleChoiceTwoPlayers(index) {
         // handle player's choice & turns
 
@@ -85,7 +91,7 @@ function mainScript() {
 
     }
 
-    //check result after a players's choice
+    // check result after a players's choice
     function checkResult() {
         // check result, if a player won or if draw, each time after a player made a choice
 
@@ -108,7 +114,8 @@ function mainScript() {
                     handleChoiceTwoPlayers(i);
                     checkResult();
                 } else if (playerNum == 1) {
-                    console.log("create game for one player");
+                    handleChoiceOnePlayer(i);
+                    checkResult();
                 }
             });
         }
