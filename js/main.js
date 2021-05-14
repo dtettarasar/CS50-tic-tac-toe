@@ -86,6 +86,7 @@ function mainScript() {
         } else if (!chosenCases.includes(index) && playerNum == 1) {
             // write the function for the AI
             console.log("todo");
+            playersTurn();
         }
 
     }
