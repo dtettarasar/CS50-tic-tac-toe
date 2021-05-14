@@ -2,8 +2,9 @@ function mainScript() {
 
     let popUp = document.querySelector("#pop-up");
     let onePGameBtn = document.querySelector("#play-1p");
-    let twoPGameBtn = document.getElementById("play-2p");
+    let twoPGameBtn = document.querySelector("#play-2p");
     let cases = Array.from(document.querySelectorAll("[id^=case]"));
+    let gameFinished = false;
     let chosenCases = [];
 
     // this array store all the cases combinations that gives the victory
@@ -89,6 +90,12 @@ function mainScript() {
 
     }
 
+    // function to end the game
+    function endGame() {
+        gameFinished = true;
+        console.log("end of the game!");
+    }
+
     // check result after a players's choice
     function checkResult() {
         // check result, if a player won or if draw, each time after a player made a choice
@@ -98,18 +105,23 @@ function mainScript() {
 
         if (playerOne.gotVictory) {
             console.log("player One win!");
+            endGame();
         } else if (playerTwo.gotVictory) {
             console.log("player Two win!");
+            endGame();
         } else if (chosenCases.length == 9) {
             console.log("Draw!");
+            endGame();
         }
     }
 
     function loadCaseEvnt(playerNum) {
         for(let i=0; i< cases.length; i++) {
-            cases[i].addEventListener("click", function() {
+            cases[i].addEventListener("click", function casesEvent() {
+                if (!gameFinished) {
                     handleChoice(i, playerNum);
                     checkResult();
+                }
             });
         }
     }
@@ -119,11 +131,11 @@ function mainScript() {
         loadCaseEvnt(playerNum);
     }
     
-    onePGameBtn.addEventListener("click", function(){
+    onePGameBtn.addEventListener("click", function() {
         startGame(1);
     });
     
-    twoPGameBtn.addEventListener("click", function(){
+    twoPGameBtn.addEventListener("click", function() {
         startGame(2);
     });
 
