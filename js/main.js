@@ -71,20 +71,23 @@ function playersTurn() {
 function handleChoice(index, playerNum) {
     // handle player's choice & turns
 
-    if (playerOne.turn && !chosenCases.includes(index)) {
-        playerOne.recordChoices(index);
-        playerOne.createSymbol(index);
-        playersTurn();
+    if (playerNum == 2) {
 
-    } else if (!chosenCases.includes(index) && playerNum == 2) {
-        playerTwo.recordChoices(index);
-        playerTwo.createSymbol(index);
-        playersTurn();
+        if (playerOne.turn && !chosenCases.includes(index)) {
+            playerOne.recordChoices(index);
+            playerOne.createSymbol(index);
+            playersTurn();
+    
+        } else if (playerTwo.turn && !chosenCases.includes(index)) {
+            playerTwo.recordChoices(index);
+            playerTwo.createSymbol(index);
+            playersTurn();
+    
+        }
 
-    } else if (!chosenCases.includes(index) && playerNum == 1) {
+    } else if (playerNum == 1) {
         // write the function for the AI
-        console.log("todo");
-        playersTurn();
+        console.log("to do");
     }
 
 }
