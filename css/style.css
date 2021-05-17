@@ -109,6 +109,7 @@ body
 .symbol
 {
     width: 40%;
+    max-height: 60%;
 }
 
 /* end style for the grid */
