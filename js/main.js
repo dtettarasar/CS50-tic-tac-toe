@@ -68,6 +68,13 @@ function playersTurn() {
     playerTwo.updateTurn();
 }
 
+function playerTwoAi() {
+
+    // write the function for the AI
+    console.log("to do");
+    playersTurn();
+}
+
 function handleChoice(index, playerNum) {
     // handle player's choice & turns
 
@@ -82,12 +89,18 @@ function handleChoice(index, playerNum) {
             playerTwo.recordChoices(index);
             playerTwo.createSymbol(index);
             playersTurn();
-    
         }
 
     } else if (playerNum == 1) {
-        // write the function for the AI
-        console.log("to do");
+        
+        playerOne.recordChoices(index);
+        playerOne.createSymbol(index);
+        playersTurn();
+
+        if (playerTwo.turn) {
+            playerTwoAi();
+        }
+
     }
 
 }
