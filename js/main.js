@@ -68,10 +68,11 @@ function playersTurn() {
     playerTwo.updateTurn();
 }
 
-function playerTwoAi() {
+function playerAi(player) {
 
     // write the function for the AI
     console.log("to do");
+    console.log(player);
     playersTurn();
 }
 
@@ -98,7 +99,7 @@ function handleChoice(index, playerNum) {
         playersTurn();
 
         if (playerTwo.turn) {
-            playerTwoAi();
+            playerAi(playerTwo);
         }
 
     }
