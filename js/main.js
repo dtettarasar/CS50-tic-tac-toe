@@ -68,9 +68,9 @@ function playersTurn() {
     playerTwo.updateTurn();
 }
 
-function playerAiEasy(player) {
 
-    // write the function for the AI
+function getAvailableCases() {
+
     const availableCases = [];
 
     for (let i = 0; i < 9;i++){
@@ -78,6 +78,14 @@ function playerAiEasy(player) {
             availableCases.push(i);
         }
     }
+
+    return availableCases;
+}
+
+function playerAiEasy(player) {
+
+    // write the function for the AI
+    const availableCases = getAvailableCases();
 
     console.log(availableCases);
 
