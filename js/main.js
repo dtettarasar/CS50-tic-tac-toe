@@ -1,5 +1,5 @@
 let popUp = document.querySelector("#pop-up");
-let onePGameBtn = document.querySelector("#play-1p");
+let onePGameEasyBtn = document.querySelector("#play-1p-easy");
 let twoPGameBtn = document.querySelector("#play-2p");
 let cases = Array.from(document.querySelectorAll("[id^=case]"));
 let gameFinished = false;
@@ -175,7 +175,7 @@ function startGame(playerNum) {
     loadCaseEvnt(playerNum);
 }
     
-onePGameBtn.addEventListener("click", function() {
+onePGameEasyBtn.addEventListener("click", function() {
     startGame(1);
 });
     

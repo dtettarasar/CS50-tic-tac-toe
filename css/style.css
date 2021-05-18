@@ -33,7 +33,7 @@ body
 {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .pop-up-text
@@ -53,22 +53,24 @@ body
     border: 4px solid;
     border-radius: 8px;
     font-size: 2rem;
+    margin: 10px;
+    flex: 0 1 280px;
 }
 
-#play-1p:hover,
+[id^=play-1p]:hover,
 #play-2p:hover
 {
     color: #ecf0f1;
     border-color: #ecf0f1;
 }
 
-#play-1p
+[id^=play-1p]
 {
     color: #e67e22;
     border-color: #e67e22;
 }
 
-#play-1p:hover
+[id^=play-1p]:hover
 {
     background-color: #e67e22;
 }
