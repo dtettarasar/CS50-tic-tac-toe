@@ -82,50 +82,21 @@ function getAvailableCases() {
     return availableCases;
 }
 
-function playerAiEasy(player) {
+function playerAiEasy(computer) {
 
-    // write the function for the AI
+    // write the function for the AI (easy version)
+
     const availableCases = getAvailableCases();
+    const random = Math.floor(Math.random() * availableCases.length);
 
-    console.log(availableCases);
-
-    playersTurn();
-}
-
-function handleChoice(index, playerNum) {
-    // handle player's choice & turns
-
-    if (playerNum == 2) {
-
-        if (playerOne.turn && !chosenCases.includes(index)) {
-            playerOne.recordChoices(index);
-            playerOne.createSymbol(index);
-            playersTurn();
-    
-        } else if (playerTwo.turn && !chosenCases.includes(index)) {
-            playerTwo.recordChoices(index);
-            playerTwo.createSymbol(index);
-            playersTurn();
-        }
-
-    } else if (playerNum == 1) {
-        
-        playerOne.recordChoices(index);
-        playerOne.createSymbol(index);
-        playersTurn();
-
-        if (playerTwo.turn) {
-            playerAiEasy(playerTwo);
-        }
-
+    if (!gameFinished) {
+        computer.recordChoices(availableCases[random]);
+        computer.createSymbol(availableCases[random]);
     }
 
-}
+    console.log(availableCases, random);
 
-// function to end the game
-function endGame() {
-    gameFinished = true;
-    console.log("end of the game!");
+    playersTurn();
 }
 
 // check result after a players's choice
@@ -147,12 +118,53 @@ function checkResult() {
     }
 }
 
+function handleChoice(index, playerNum) {
+    // handle player's choice & turns
+
+    if (playerNum == 2) {
+
+        if (playerOne.turn && !chosenCases.includes(index)) {
+            playerOne.recordChoices(index);
+            playerOne.createSymbol(index);
+            playersTurn();
+            checkResult();
+    
+        } else if (playerTwo.turn && !chosenCases.includes(index)) {
+            playerTwo.recordChoices(index);
+            playerTwo.createSymbol(index);
+            playersTurn();
+            checkResult();
+        }
+
+    } else if (playerNum == 1) {
+        
+        playerOne.recordChoices(index);
+        playerOne.createSymbol(index);
+        playersTurn();
+        checkResult();
+
+        if (playerTwo.turn && !playerOne.gotVictory && chosenCases.length < 9) {
+            playerAiEasy(playerTwo);
+            checkResult();
+        }
+
+    }
+
+}
+
+// function to end the game
+function endGame() {
+    gameFinished = true;
+    console.log("end of the game!");
+}
+
+
+
 function loadCaseEvnt(playerNum) {
     for(let i=0; i< cases.length; i++) {
         cases[i].addEventListener("click", function casesEvent() {
             if (!gameFinished) {
                 handleChoice(i, playerNum);
-                checkResult();
             }
         });
     }
