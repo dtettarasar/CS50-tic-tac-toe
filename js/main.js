@@ -68,11 +68,19 @@ function playersTurn() {
     playerTwo.updateTurn();
 }
 
-function playerAi(player) {
+function playerAiEasy(player) {
 
     // write the function for the AI
-    console.log("to do");
-    console.log(player);
+    const availableCases = [];
+
+    for (let i = 0; i < 9;i++){
+        if (!chosenCases.includes(i)) {
+            availableCases.push(i);
+        }
+    }
+
+    console.log(availableCases);
+
     playersTurn();
 }
 
@@ -99,7 +107,7 @@ function handleChoice(index, playerNum) {
         playersTurn();
 
         if (playerTwo.turn) {
-            playerAi(playerTwo);
+            playerAiEasy(playerTwo);
         }
 
     }
