@@ -94,8 +94,6 @@ function playerAiEasy(computer) {
         computer.createSymbol(availableCases[random]);
     }
 
-    console.log(availableCases, random);
-
     playersTurn();
 }
 
