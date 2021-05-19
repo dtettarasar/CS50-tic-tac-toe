@@ -86,6 +86,12 @@ function getAvailableCases() {
     return availableCases;
 }
 
+function minimax(gameGridCopy, player) {
+
+    const availableCases = getAvailableCases();
+    
+}
+
 function playerAiEasy(computer) {
 
     // write the function for the AI (easy version)
@@ -101,7 +107,7 @@ function playerAiEasy(computer) {
     playersTurn();
 }
 
-function playerAiDifficult(computer) {
+function playerAiDifficult(computer, player) {
     console.log("todo");
     playersTurn();
 }
@@ -152,7 +158,7 @@ function handleChoice(index, playerNum) {
 
         if (playerTwo.turn && !playerOne.gotVictory && chosenCases.length < 9) {
             if (difficultAi) {
-                playerAiDifficult(playerTwo);
+                playerAiDifficult(playerTwo, playerOne);
             } else {
                 playerAiEasy(playerTwo);
             }
