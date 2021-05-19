@@ -1,7 +1,10 @@
-let popUp = document.querySelector("#pop-up");
-let onePGameEasyBtn = document.querySelector("#play-1p-easy");
-let twoPGameBtn = document.querySelector("#play-2p");
-let cases = Array.from(document.querySelectorAll("[id^=case]"));
+// initial variables
+
+const popUp = document.querySelector("#pop-up");
+const onePGameEasyBtn = document.querySelector("#play-1p-easy");
+const onePGameDiffBtn = document.querySelector("#play-1p-difficult");
+const twoPGameBtn = document.querySelector("#play-2p");
+const cases = Array.from(document.querySelectorAll("[id^=case]"));
 let gameFinished = false;
 let chosenCases = [];
 
@@ -94,6 +97,11 @@ function playerAiEasy(computer) {
         computer.createSymbol(availableCases[random]);
     }
 
+    playersTurn();
+}
+
+function playerAiDifficult(computer) {
+    console.log("todo");
     playersTurn();
 }
 
