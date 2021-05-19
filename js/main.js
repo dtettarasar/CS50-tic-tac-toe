@@ -88,6 +88,11 @@ function getAvailableCases() {
 
 function minimax(gameGridCopy, player, computer) {
 
+    let bestChoice = {
+        score = null;
+        index = null;
+    };
+
     const availableCases = getAvailableCases();
 
 }
@@ -109,6 +114,16 @@ function playerAiEasy(computer) {
 
 function playerAiDifficult(computer, player) {
     console.log("todo");
+
+    /*
+    
+    let index = minimax(computer, player).index;
+
+    computer.recordChoices(index);
+    computer.createSymbol(index);
+    
+    */
+
     playersTurn();
 }
 
