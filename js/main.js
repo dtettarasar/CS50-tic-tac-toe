@@ -90,7 +90,7 @@ function getAvailableCases() {
     return availableCases;
 }
 
-function minimax(gameGridCopy, player, computer) {
+function minimax(computer, player) {
 
     let bestChoice = {
         score: null,
@@ -98,6 +98,9 @@ function minimax(gameGridCopy, player, computer) {
     };
 
     const availableCases = getAvailableCases();
+
+    const playerChoices = player.choices;
+    const computerChoices = computer.choices;
 
     return bestChoice;
 
@@ -119,12 +122,13 @@ function playerAiEasy(computer) {
 }
 
 function playerAiDifficult(computer, player) {
-    console.log("todo");
+
+    let index = minimax(computer, player).index;
+
+    console.log(index);
 
     /*
     
-    let index = minimax(computer, player).index;
-
     computer.recordChoices(index);
     computer.createSymbol(index);
     
