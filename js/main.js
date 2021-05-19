@@ -89,11 +89,13 @@ function getAvailableCases() {
 function minimax(gameGridCopy, player, computer) {
 
     let bestChoice = {
-        score = null;
-        index = null;
+        score: null,
+        index: null
     };
 
     const availableCases = getAvailableCases();
+
+    return bestChoice;
 
 }
 
