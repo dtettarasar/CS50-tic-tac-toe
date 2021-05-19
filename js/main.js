@@ -7,6 +7,7 @@ const twoPGameBtn = document.querySelector("#play-2p");
 const cases = Array.from(document.querySelectorAll("[id^=case]"));
 let gameFinished = false;
 let chosenCases = [];
+let difficultAi;
 
 // this array store all the cases combinations that gives the victory
 const victories = [
@@ -150,7 +151,11 @@ function handleChoice(index, playerNum) {
         checkResult();
 
         if (playerTwo.turn && !playerOne.gotVictory && chosenCases.length < 9) {
-            playerAiEasy(playerTwo);
+            if (difficultAi) {
+                playerAiDifficult(playerTwo);
+            } else {
+                playerAiEasy(playerTwo);
+            }
             checkResult();
         }
 
@@ -182,9 +187,16 @@ function startGame(playerNum) {
 }
     
 onePGameEasyBtn.addEventListener("click", function() {
+    difficultAi = false;
+    startGame(1);
+});
+
+onePGameDiffBtn.addEventListener("click", function() {
+    difficultAi = true;
     startGame(1);
 });
     
 twoPGameBtn.addEventListener("click", function() {
+    difficultAi = false;
     startGame(2);
 });
