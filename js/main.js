@@ -54,7 +54,6 @@ function Player(number, turn, symbol, gotVictory) {
         // check if a player got the victory
         // we check if a player got one of the possible winning set of choices
         for (let i = 0; i < victories.length; i++) {
-            let victory = null
             let vicChecker = victories[i].every(value => choicesArr.includes(value));
             if (vicChecker) {
                 this.gotVictory = vicChecker;
