@@ -86,10 +86,10 @@ function getAvailableCases() {
     return availableCases;
 }
 
-function minimax(gameGridCopy, player) {
+function minimax(gameGridCopy, player, computer) {
 
     const availableCases = getAvailableCases();
-    
+
 }
 
 function playerAiEasy(computer) {
