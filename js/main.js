@@ -50,14 +50,18 @@ function Player(number, turn, symbol, gotVictory) {
         this.turn = !this.turn;
     }
 
-    this.victoryLookUp = function(choicesArr = this.choices) {
+    this.victoryLookUp = function(choicesArr = this.choices, testAi = false) {
         // check if a player got the victory
         // we check if a player got one of the possible winning set of choices
         for (let i = 0; i < victories.length; i++) {
             let vicChecker = victories[i].every(value => choicesArr.includes(value));
-            if (vicChecker) {
+            if (vicChecker && !testAi) {
                 this.gotVictory = vicChecker;
-                break;
+                return this.gotVictory;
+            } else if (testAi) {
+                // the test AI path will be used in minimax() to test choices
+                const resultAi = vicChecker;
+                return resultAi;
             }
         }
     }
@@ -135,6 +139,12 @@ function checkResult() {
 
     playerOne.victoryLookUp();
     playerTwo.victoryLookUp();
+
+    //console.log(playerOne.gotVictory);
+    //console.log(playerTwo.gotVictory);
+
+    //victory lookup test with "Ai mode"
+    //console.log(playerTwo.victoryLookUp([2,0,1], true));
 
     if (playerOne.gotVictory) {
         console.log("player One win!");
