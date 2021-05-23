@@ -58,7 +58,7 @@ function Player(number, turn, symbol, gotVictory) {
             if (vicChecker && !testAi) {
                 this.gotVictory = vicChecker;
                 return this.gotVictory;
-            } else if (testAi) {
+            } else if (vicChecker && testAi) {
                 // the test AI path will be used in minimax() to test choices
                 const resultAi = vicChecker;
                 return resultAi;
@@ -97,10 +97,33 @@ function minimax(computer, player) {
         index: null
     };
 
+    let possibleChoices = [];
+
     const availableCases = getAvailableCases();
 
     const playerChoices = player.choices;
-    const computerChoices = computer.choices;
+
+    console.log(playerChoices);
+
+    function testPossibleChoice(player, aiTurn) {
+
+        for (let i = 0; i < availableCases.length; i++) {
+            let dataChoice = {
+                score: null,
+                index: null
+            }
+            const playerChoices = [...player.choices];
+            playerChoices.push(availableCases[i]);
+            const testChoice = player.victoryLookUp(playerChoices, true);
+            dataChoice.score = testChoice;
+            dataChoice.index = availableCases[i];
+            possibleChoices.push(dataChoice);
+        }
+    
+        console.log(possibleChoices);
+    }
+
+    testPossibleChoice(player);
 
     return bestChoice;
 
@@ -125,7 +148,7 @@ function playerAiDifficult(computer, player) {
 
     let index = minimax(computer, player).index;
 
-    console.log(index);
+    console.log(computer.choices);
 
     /*
     
