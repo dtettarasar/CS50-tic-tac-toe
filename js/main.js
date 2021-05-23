@@ -122,8 +122,10 @@ function minimax(computer, player) {
                 dataChoice.score = 1;
             } else if (testChoice && !aiTurn) {
                 dataChoice.score = -1;
-            } else {
+            } else if (availableCases.length == 0) {
                 dataChoice.score = 0;
+            } else {
+                console.log("to do");
             }
 
             dataChoice.index = availableCases[i];
