@@ -103,19 +103,29 @@ function minimax(computer, player) {
 
     const playerChoices = player.choices;
 
-    console.log(playerChoices);
-
     function testPossibleChoice(player, aiTurn) {
 
         for (let i = 0; i < availableCases.length; i++) {
+
             let dataChoice = {
                 score: null,
                 index: null
             }
             const playerChoices = [...player.choices];
+            console.log(playerChoices);
             playerChoices.push(availableCases[i]);
             const testChoice = player.victoryLookUp(playerChoices, true);
-            dataChoice.score = testChoice;
+
+            console.log(testChoice);
+
+            if (testChoice && aiTurn) {
+                dataChoice.score = 1;
+            } else if (testChoice && !aiTurn) {
+                dataChoice.score = -1;
+            } else {
+                dataChoice.score = 0;
+            }
+
             dataChoice.index = availableCases[i];
             possibleChoices.push(dataChoice);
         }
@@ -123,7 +133,9 @@ function minimax(computer, player) {
         console.log(possibleChoices);
     }
 
-    testPossibleChoice(player);
+    testPossibleChoice(computer, true);
+
+    bestChoice.index = availableCases[0];
 
     return bestChoice;
 
@@ -149,13 +161,10 @@ function playerAiDifficult(computer, player) {
     let index = minimax(computer, player).index;
 
     console.log(computer.choices);
-
-    /*
     
     computer.recordChoices(index);
     computer.createSymbol(index);
     
-    */
 
     playersTurn();
 }
