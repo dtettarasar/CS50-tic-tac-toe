@@ -90,6 +90,8 @@ function getAvailableCases() {
     return availableCases;
 }
 
+
+
 function minimax(computer, player) {
 
     let bestChoice = {
@@ -112,20 +114,18 @@ function minimax(computer, player) {
                 index: null
             }
             const playerChoices = [...player.choices];
-            console.log(playerChoices);
             playerChoices.push(availableCases[i]);
             const testChoice = player.victoryLookUp(playerChoices, true);
 
-            console.log(testChoice);
-
             if (testChoice && aiTurn) {
                 dataChoice.score = 1;
+                //bestChoice.index = 1;
             } else if (testChoice && !aiTurn) {
                 dataChoice.score = -1;
             } else if (availableCases.length == 0) {
                 dataChoice.score = 0;
             } else {
-                console.log("to do");
+                //console.log("to do");
             }
 
             dataChoice.index = availableCases[i];
@@ -142,6 +142,7 @@ function minimax(computer, player) {
     return bestChoice;
 
 }
+
 
 function playerAiEasy(computer) {
 
@@ -160,13 +161,12 @@ function playerAiEasy(computer) {
 
 function playerAiDifficult(computer, player) {
 
-    let index = minimax(computer, player).index;
+    const availableCases = getAvailableCases();
 
-    console.log(computer.choices);
+    let index = minimax(computer, player).index;
     
     computer.recordChoices(index);
     computer.createSymbol(index);
-    
 
     playersTurn();
 }
