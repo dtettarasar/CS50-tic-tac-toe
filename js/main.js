@@ -90,59 +90,28 @@ function getAvailableCases() {
     return availableCases;
 }
 
+function minimax(board, who, testChoice, aiTurn) {
 
+    const choices = [...who.choices];
+    choices.push(testChoice);
+    const testVictory = who.victoryLookUp(choices, true);
 
-function minimax(computer, player) {
-
-    let bestChoice = {
-        score: null,
-        index: null
+    const choiceResult = {
+        index: testChoice
     };
 
-    let possibleChoices = [];
-
-    const availableCases = getAvailableCases();
-
-    const playerChoices = player.choices;
-
-    function testPossibleChoice(player, aiTurn) {
-
-        for (let i = 0; i < availableCases.length; i++) {
-
-            let dataChoice = {
-                score: null,
-                index: null
-            }
-            const playerChoices = [...player.choices];
-            playerChoices.push(availableCases[i]);
-            const testChoice = player.victoryLookUp(playerChoices, true);
-
-            if (testChoice && aiTurn) {
-                dataChoice.score = 1;
-                //bestChoice.index = 1;
-            } else if (testChoice && !aiTurn) {
-                dataChoice.score = -1;
-            } else if (availableCases.length == 0) {
-                dataChoice.score = 0;
-            } else {
-                //console.log("to do");
-            }
-
-            dataChoice.index = availableCases[i];
-            possibleChoices.push(dataChoice);
-        }
     
-        console.log(possibleChoices);
+    if (testVictory && aiTurn) {
+        choiceResult.score = 10;
+    } else if (testVictory && !aiTurn) {
+        choiceResult.score = -10;
+    } else if (board.length == 0) {
+        choiceResult.score = 0;
     }
 
-    testPossibleChoice(computer, true);
-
-    bestChoice.index = availableCases[0];
-
-    return bestChoice;
+    return choiceResult;
 
 }
-
 
 function playerAiEasy(computer) {
 
@@ -162,9 +131,20 @@ function playerAiEasy(computer) {
 function playerAiDifficult(computer, player) {
 
     const availableCases = getAvailableCases();
+    let index = availableCases[0];
+    let testResult;
+    let bestScore = -Infinity;
+    let bestMove;
 
-    let index = minimax(computer, player).index;
-    
+    for (let i = 0; i < availableCases.length; i++) {
+        testResult = minimax(availableCases, computer, availableCases[i], true);
+        if (testResult.score > bestScore) {
+            bestScore = testResult.score;
+            bestMove = availableCases[i];
+            console.log(testResult);
+        }
+        
+    }
     computer.recordChoices(index);
     computer.createSymbol(index);
 
