@@ -61,8 +61,8 @@ function Player(number, turn, symbol, gotVictory) {
                 return this.gotVictory;
             } else if (vicChecker && minimaxTest) {
                 // the minimaxTest path will be used in minimax() to test choices
-                const resultAi = vicChecker;
-                return resultAi;
+                const resultMiniMax = vicChecker;
+                return resultMiniMax;
             }
         }
     }
