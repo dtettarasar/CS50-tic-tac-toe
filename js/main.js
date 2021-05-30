@@ -90,23 +90,32 @@ function getAvailableCases() {
     return availableCases;
 }
 
-function minimax(board, who, testChoice, aiTurn) {
+function minimax(board, testChoice, aiTurn, depth, computer, player) {
 
-    const choices = [...who.choices];
-    choices.push(testChoice);
-    const testVictory = who.victoryLookUp(choices, true);
+    const playerChoices = [...player.choices];
+    const cpuChoices = [...computer.choices];
+    playerChoices.push(testChoice);
+    cpuChoices.push(testChoice);
+    const testPlayerVictory = player.victoryLookUp(playerChoices, true);
+    const testCpuVictory = computer.victoryLookUp(cpuChoices, true);
 
     const choiceResult = {
         index: testChoice
     };
 
-    
-    if (testVictory && aiTurn) {
+    if (testCpuVictory && aiTurn) {
         choiceResult.score = 10;
-    } else if (testVictory && !aiTurn) {
+        return choiceResult;
+    } else if (testPlayerVictory && !aiTurn) {
         choiceResult.score = -10;
+        return choiceResult;
     } else if (board.length == 0) {
         choiceResult.score = 0;
+        return choiceResult;
+    }
+
+    if (aiTurn) {
+        let bestScore = -Infinity;
     }
 
     return choiceResult;
@@ -137,14 +146,15 @@ function playerAiDifficult(computer, player) {
     let bestMove;
 
     for (let i = 0; i < availableCases.length; i++) {
-        testResult = minimax(availableCases, computer, availableCases[i], true);
+        testResult = minimax(availableCases, availableCases[i], false, 0, computer, player);
         if (testResult.score > bestScore) {
             bestScore = testResult.score;
             bestMove = availableCases[i];
-            console.log(testResult);
         }
         
+        console.log(testResult);
     }
+
     computer.recordChoices(index);
     computer.createSymbol(index);
 
