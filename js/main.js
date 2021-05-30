@@ -50,15 +50,15 @@ function Player(number, turn, symbol, gotVictory) {
         this.turn = !this.turn;
     }
 
-    this.victoryLookUp = function(choicesArr = this.choices, testAi = false) {
+    this.victoryLookUp = function(choicesArr = this.choices, minimaxTest = false) {
         // check if a player got the victory
         // we check if a player got one of the possible winning set of choices
         for (let i = 0; i < victories.length; i++) {
             let vicChecker = victories[i].every(value => choicesArr.includes(value));
-            if (vicChecker && !testAi) {
+            if (vicChecker && !minimaxTest) {
                 this.gotVictory = vicChecker;
                 return this.gotVictory;
-            } else if (vicChecker && testAi) {
+            } else if (vicChecker && minimaxTest) {
                 // the test AI path will be used in minimax() to test choices
                 const resultAi = vicChecker;
                 return resultAi;
@@ -91,13 +91,21 @@ function getAvailableCases() {
 }
 
 function minimax(board, testChoice, aiTurn, depth, computer, player) {
-
+    
     const playerChoices = [...player.choices];
     const cpuChoices = [...computer.choices];
-    playerChoices.push(testChoice);
-    cpuChoices.push(testChoice);
+
+    if (aiTurn) {
+        cpuChoices.push(testChoice);
+    } else {
+        playerChoices.push(testChoice);
+    } 
+
     const testPlayerVictory = player.victoryLookUp(playerChoices, true);
     const testCpuVictory = computer.victoryLookUp(cpuChoices, true);
+    let boardCopy = board;
+
+    //console.log(boardCopy);
 
     const choiceResult = {
         index: testChoice
@@ -109,14 +117,20 @@ function minimax(board, testChoice, aiTurn, depth, computer, player) {
     } else if (testPlayerVictory && !aiTurn) {
         choiceResult.score = -10;
         return choiceResult;
-    } else if (board.length == 0) {
+    } else if (boardCopy.length == 0) {
         choiceResult.score = 0;
         return choiceResult;
     }
 
+    /*
     if (aiTurn) {
         let bestScore = -Infinity;
+        for (let i = 0; i < boardCopy.length; i++) {
+            console.log(i);
+            let testScore = minimax (boardCopy, i, false, depth + 1, )
+        }
     }
+    */
 
     return choiceResult;
 
@@ -151,7 +165,7 @@ function playerAiDifficult(computer, player) {
             bestScore = testResult.score;
             bestMove = availableCases[i];
         }
-        
+        minimax(availableCases, availableCases[i], false, 0, computer, player);
         console.log(testResult);
     }
 
