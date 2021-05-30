@@ -28,6 +28,7 @@ function Player(number, turn, symbol, gotVictory) {
     this.turn = turn;
     this.symbol = symbol;
     this.choices = [];
+    this.minimaxChoices = [];
     this.gotVictory = gotVictory;
 
     this.createSymbol = function(caseId) {
@@ -59,7 +60,7 @@ function Player(number, turn, symbol, gotVictory) {
                 this.gotVictory = vicChecker;
                 return this.gotVictory;
             } else if (vicChecker && minimaxTest) {
-                // the test AI path will be used in minimax() to test choices
+                // the minimaxTest path will be used in minimax() to test choices
                 const resultAi = vicChecker;
                 return resultAi;
             }
@@ -92,17 +93,17 @@ function getAvailableCases() {
 
 function minimax(board, testChoice, aiTurn, depth, computer, player) {
     
-    const playerChoices = [...player.choices];
-    const cpuChoices = [...computer.choices];
+    player.minimaxChoices = [...player.choices];
+    computer.minimaxChoices = [...computer.choices];
 
     if (aiTurn) {
-        cpuChoices.push(testChoice);
+        computer.minimaxChoices.push(testChoice);
     } else {
-        playerChoices.push(testChoice);
+        player.minimaxChoices.push(testChoice);
     } 
 
-    const testPlayerVictory = player.victoryLookUp(playerChoices, true);
-    const testCpuVictory = computer.victoryLookUp(cpuChoices, true);
+    const testPlayerVictory = player.victoryLookUp(player.minimaxChoices, true);
+    const testCpuVictory = computer.victoryLookUp(computer.minimaxChoices, true);
     let boardCopy = board;
 
     //console.log(boardCopy);
@@ -131,6 +132,9 @@ function minimax(board, testChoice, aiTurn, depth, computer, player) {
         }
     }
     */
+
+    player.minimaxChoices = [];
+    computer.minimaxChoices = [];
 
     return choiceResult;
 
