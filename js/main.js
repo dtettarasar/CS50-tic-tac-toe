@@ -140,14 +140,14 @@ function minimax(board, testChoice, aiTurn, depth, firstExec) {
         return choiceResult;
     }
 
-    /*
+    
     if (aiTurn) {
 
         let bestScore = -Infinity;
         for (let i = 0; i < boardCopy.length; i++) {
-            let testScore = minimax(boardCopy, boardCopy[i], false, depth + 1, false);
-            //console.log(boardCopy);
-            bestScore = max(testScore.score, bestScore);
+            //let testScore = minimax(boardCopy, boardCopy[i], false, depth + 1, false);
+            console.log(boardCopy, bestScore);
+            //bestScore = max(testScore.score, bestScore);
             choiceResult.score = bestScore;
         }
         return choiceResult;
@@ -156,14 +156,14 @@ function minimax(board, testChoice, aiTurn, depth, firstExec) {
 
         let bestScore = Infinity;
         for (let i = 0; i < boardCopy.length; i++) {
-            let testScore = minimax(boardCopy, boardCopy[i], true, depth + 1, false);
-            //console.log(boardCopy);
-            bestScore = min(testScore.score, bestScore);
+            //let testScore = minimax(boardCopy, boardCopy[i], true, depth + 1, false);
+            console.log(boardCopy, bestScore);
+            //bestScore = min(testScore.score, bestScore);
             choiceResult.score = bestScore;
         }
 
         return choiceResult;
-    }*/
+    }
 
     console.log(choiceResult);
 
