@@ -66,6 +66,14 @@ function Player(number, turn, symbol, gotVictory) {
             }
         }
     }
+
+    this.copyChoices = function() {
+        this.minimaxChoices = [...this.choices];
+    }
+
+    this.cleanMiniMax = function() {
+        this.minimaxChoices = [];
+    }
 }
 
 // create the players
@@ -76,12 +84,6 @@ function playersTurn() {
     playerOne.updateTurn();
     playerTwo.updateTurn();
 }
-
-function cleanMiniMaxChoices() {
-    playerOne.minimaxChoices = [];
-    playerTwo.minimaxChoices = [];
-}
-
 
 function getAvailableCases() {
 
@@ -96,10 +98,28 @@ function getAvailableCases() {
     return availableCases;
 }
 
+function getBestMove() {
+
+    let bestScore = -Infinity;
+    let move;
+
+
+}
+
+function minimax() {
+    
+}
+
+/*
 function minimax(board, testChoice, aiTurn, depth, firstExec) {
 
     let testCpuVictory;
     let testPlayerVictory;
+
+    function cleanTestVic() {
+        testCpuVictory = null;
+        testPlayerVictory = null;
+    }
 
     if (firstExec) {
         playerOne.minimaxChoices = [...playerOne.choices];
@@ -107,69 +127,67 @@ function minimax(board, testChoice, aiTurn, depth, firstExec) {
     }
 
     if (aiTurn && !playerTwo.minimaxChoices.includes(testChoice)) {
-
         playerTwo.minimaxChoices.push(testChoice);
         testCpuVictory = playerTwo.victoryLookUp(playerTwo.minimaxChoices, true);
-        //playerTwo.minimaxChoices.pop();
+        //console.log("cpuvic: " + testCpuVictory);
 
     } else if (!playerOne.minimaxChoices.includes(testChoice)) {
-
         playerOne.minimaxChoices.push(testChoice);
         testPlayerVictory = playerOne.victoryLookUp(playerOne.minimaxChoices, true);
-        //playerOne.minimaxChoices.pop();
+        //console.log("playervic: " + testPlayerVictory);
     }
+  
+     //console.log(boardCopy);
 
-    //console.log(playerTwo.minimaxChoices);
-    
-    let boardCopy = board;
-
-    //console.log(boardCopy);
-
-    const choiceResult = {
-        index: testChoice
-    };
+    let score;
 
     if (testCpuVictory && aiTurn) {
-        choiceResult.score = 10;
-        return choiceResult;
+        score = 10;
+        return score;
     } else if (testPlayerVictory && !aiTurn) {
-        choiceResult.score = -10;
-        return choiceResult;
-    } else if (boardCopy.length == 0) {
-        choiceResult.score = 0;
-        return choiceResult;
+        score = -10;
+        return score;
+    } else if (playerOne.minimaxChoices.length + playerTwo.minimaxChoices.length == 9) {
+        score = 0;
+        return score;
     }
-
     
     if (aiTurn) {
 
         let bestScore = -Infinity;
-        for (let i = 0; i < boardCopy.length; i++) {
-            //let testScore = minimax(boardCopy, boardCopy[i], false, depth + 1, false);
-            console.log(boardCopy, bestScore);
-            //bestScore = max(testScore.score, bestScore);
-            choiceResult.score = bestScore;
+        for (let i = 0; i < board.length; i++) {
+            if (!playerTwo.minimaxChoices.includes(board[i])){
+                let testScore = minimax(board, board[i], false, depth + 1, false);
+                bestScore = Math.max(testScore, bestScore);
+                console.log("AI score");
+                console.log(testScore);
+            }
+            //console.log("AI score");
+            //console.log(bestScore);
         }
-        return choiceResult;
+        return bestScore;
 
     } else {
 
         let bestScore = Infinity;
-        for (let i = 0; i < boardCopy.length; i++) {
-            //let testScore = minimax(boardCopy, boardCopy[i], true, depth + 1, false);
-            console.log(boardCopy, bestScore);
-            //bestScore = min(testScore.score, bestScore);
-            choiceResult.score = bestScore;
+        for (let i = 0; i < board.length; i++) {
+            if(!playerOne.minimaxChoices.includes(board[i])){
+                let testScore = minimax(board, board[i], true, depth + 1, false);
+                bestScore = Math.min(testScore, bestScore);
+                console.log("Player score");
+                console.log(testScore);
+            }
+            //console.log("Player score");
+            //console.log(bestScore);
         }
-
-        return choiceResult;
+        return bestScore;
     }
 
-    console.log(choiceResult);
+    //console.log(choiceResult);
+    //return score;
+    
 
-    return choiceResult;
-
-}
+}*/
 
 function playerAiEasy(computer) {
 
@@ -190,26 +208,11 @@ function playerAiDifficult() {
 
     const availableCases = getAvailableCases();
     let index = availableCases[0];
-    let testResult;
-    let bestScore = -Infinity;
-    let bestMove;
-
-    for (let i = 0; i < availableCases.length; i++) {
-        testResult = minimax(availableCases, availableCases[i], false, 0, true);
-        if (testResult.score > bestScore) {
-            bestScore = testResult.score;
-            bestMove = availableCases[i];
-        }
-        //console.log(testResult);
-    }
-
-    console.log(bestScore);
-    console.log(bestMove);
+    let testResult;  
 
     playerTwo.recordChoices(index);
     playerTwo.createSymbol(index);
 
-    cleanMiniMaxChoices();
     playersTurn();
 }
 
