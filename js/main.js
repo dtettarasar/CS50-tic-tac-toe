@@ -71,6 +71,13 @@ function Player(number, turn, symbol, gotVictory) {
         this.minimaxChoices = [...this.choices];
     }
 
+    this.removeChoice = function(caseId) {
+        const index = this.minimaxChoices.indexOf(caseId);
+        if (index > -1) {
+            this.minimaxChoices.splice(index, 1);
+        }
+    }
+
     this.cleanMiniMax = function() {
         this.minimaxChoices = [];
     }
@@ -98,16 +105,43 @@ function getAvailableCases() {
     return availableCases;
 }
 
-function getBestMove() {
-
-    let bestScore = -Infinity;
-    let move;
-
-
+function minimax(player) {
+    return player.minimaxChoices;
 }
 
-function minimax() {
-    
+function getBestMove() {
+
+    const board = getAvailableCases();
+    let bestScore = -Infinity;
+    let bestMove;
+
+    playerOne.copyChoices();
+    playerTwo.copyChoices();
+
+    console.log("player 1: " + playerOne.minimaxChoices);
+    console.log("player 2: " + playerTwo.minimaxChoices);
+    //console.log("board: " + board);
+
+    for (let i = 0; i < board.length; i++) {
+
+        playerTwo.minimaxChoices.push(board[i]);
+        let score = minimax(playerTwo);
+        console.log(score);
+        playerTwo.removeChoice(board[i]);
+        
+        if (score > bestScore) {
+            bestScore = score;
+            bestMove = board[i];
+        }
+    }
+
+    /*
+    playerOne.cleanMiniMax();
+    console.log("player 1: " + playerOne.minimaxChoices);
+    */
+
+    return bestMove;
+
 }
 
 /*
@@ -209,6 +243,8 @@ function playerAiDifficult() {
     const availableCases = getAvailableCases();
     let index = availableCases[0];
     let testResult;  
+
+    getBestMove();
 
     playerTwo.recordChoices(index);
     playerTwo.createSymbol(index);
