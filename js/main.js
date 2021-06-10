@@ -51,18 +51,24 @@ function Player(number, turn, symbol, gotVictory) {
         this.turn = !this.turn;
     }
 
-    this.victoryLookUp = function(choicesArr = this.choices, minimaxTest = false) {
+    this.victoryLookUp = function(minimaxTest = false) {
         // check if a player got the victory
         // we check if a player got one of the possible winning set of choices
         for (let i = 0; i < victories.length; i++) {
-            let vicChecker = victories[i].every(value => choicesArr.includes(value));
-            if (vicChecker && !minimaxTest) {
-                this.gotVictory = vicChecker;
-                return this.gotVictory;
-            } else if (vicChecker && minimaxTest) {
+            let vicChecker;
+            if (!minimaxTest) {
+                vicChecker = victories[i].every(value => this.choices.includes(value));
+                if (vicChecker) {
+                    this.gotVictory = vicChecker;
+                    return this.gotVictory;
+                }
+            } else if (minimaxTest) {
                 // the minimaxTest path will be used in minimax() to test choices
-                const resultMiniMax = vicChecker;
-                return resultMiniMax;
+                //voir pour intégrer ici directement minimaxchoice dans la fonction
+                vicChecker = victories[i].every(value => this.minimaxChoices.includes(value));
+                console.log(this.minimaxChoices);
+                console.log(vicChecker);
+                return vicChecker;
             }
         }
     }
@@ -106,6 +112,14 @@ function getAvailableCases() {
 }
 
 function minimax(player) {
+
+    let choicesToTest = player.minimaxChoices;
+
+    let testVictory = player.victoryLookUp(choicesToTest, true);
+
+    //console.log(player.number);
+    //console.log(player.minimaxChoices);
+
     return player.minimaxChoices;
 }
 
@@ -118,15 +132,15 @@ function getBestMove() {
     playerOne.copyChoices();
     playerTwo.copyChoices();
 
-    console.log("player 1: " + playerOne.minimaxChoices);
-    console.log("player 2: " + playerTwo.minimaxChoices);
+    //console.log("player 1: " + playerOne.minimaxChoices);
+    //console.log("player 2: " + playerTwo.minimaxChoices);
     //console.log("board: " + board);
 
     for (let i = 0; i < board.length; i++) {
 
         playerTwo.minimaxChoices.push(board[i]);
         let score = minimax(playerTwo);
-        console.log(score);
+        //console.log(score);
         playerTwo.removeChoice(board[i]);
         
         if (score > bestScore) {
