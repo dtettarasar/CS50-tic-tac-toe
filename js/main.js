@@ -113,29 +113,34 @@ function getAvailableCases() {
     return availableCases;
 }
 
-function minimax(player) {
+function minimax() {
+
+    let numberOfTakenCase = playerOne.minimaxChoices.length + playerTwo.minimaxChoices.length;
 
     let score;
 
-    //let choicesToTest = player.minimaxChoices;
-
-    let testVictory = player.victoryLookUp(true);
-
-    if (testVictory == true && player.number == 2) {
+    if (playerTwo.victoryLookUp(true)) {
         score = 10;
-        console.log(player.minimaxChoices);
-        console.log(testVictory);
+        console.log(playerTwo.minimaxChoices);
+        console.log("score: " + score);
         return score;
-    } else if (testVictory == true && player.number == 1) {
-        console.log(player.minimaxChoices);
-        console.log(testVictory);
+    } else if (playerOne.victoryLookUp(true)) {
         score = -10;
+        console.log(playerOne.minimaxChoices);
+        console.log("score: " + score);
         return score;
-    } 
+    } else if (numberOfTakenCase == 9) {
+        score = 0;
+        return score;
+    }
+
+    console.log(playerTwo.minimaxChoices);
+
+    console.log("number of taken case: " + numberOfTakenCase);
 
     /* Trouver un moyen de tracker la longueur des case disponible au fil du process avec minimax. Sinon risque de boucle infini */
 
-    return player.minimaxChoices;
+    return score;
 }
 
 function getBestMove() {
@@ -156,7 +161,7 @@ function getBestMove() {
     for (let i = 0; i < board.length; i++) {
 
         playerTwo.minimaxChoices.push(board[i]);
-        let score = minimax(playerTwo);
+        let score = minimax();
         //console.log(score);
         playerTwo.removeChoice(board[i]);
         
