@@ -11,10 +11,10 @@ let difficultAi;
 
 // this array store all the cases combinations that gives the victory
 const victories = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
     [0,3,6],
+    [6,7,8],
+    [3,4,5],
+    [0,1,2],
     [1,4,7],
     [2,5,8],
     [0,4,8],
@@ -54,6 +54,7 @@ function Player(number, turn, symbol, gotVictory) {
     this.victoryLookUp = function(minimaxTest = false) {
         // check if a player got the victory
         // we check if a player got one of the possible winning set of choices
+        
         for (let i = 0; i < victories.length; i++) {
             let vicChecker;
             if (!minimaxTest) {
@@ -64,16 +65,17 @@ function Player(number, turn, symbol, gotVictory) {
                 }
             } else if (minimaxTest) {
                 // the minimaxTest path will be used in minimax() to test choices
-                //voir pour intégrer ici directement minimaxchoice dans la fonction
                 vicChecker = victories[i].every(value => this.minimaxChoices.includes(value));
-                console.log(this.minimaxChoices);
-                console.log(vicChecker);
-                return vicChecker;
+                //console.log(this.minimaxChoices);
+                //console.log(vicChecker);
+                if (vicChecker) {
+                    return vicChecker;
+                }
             }
         }
     }
 
-    this.copyChoices = function() {
+    this.copyChoicesToMiniMax = function() {
         this.minimaxChoices = [...this.choices];
     }
 
@@ -113,12 +115,12 @@ function getAvailableCases() {
 
 function minimax(player) {
 
-    let choicesToTest = player.minimaxChoices;
+    //let choicesToTest = player.minimaxChoices;
 
-    let testVictory = player.victoryLookUp(choicesToTest, true);
+    let testVictory = player.victoryLookUp(true);
 
-    //console.log(player.number);
-    //console.log(player.minimaxChoices);
+    console.log(player.minimaxChoices);
+    console.log(testVictory);
 
     return player.minimaxChoices;
 }
@@ -129,8 +131,8 @@ function getBestMove() {
     let bestScore = -Infinity;
     let bestMove;
 
-    playerOne.copyChoices();
-    playerTwo.copyChoices();
+    playerOne.copyChoicesToMiniMax();
+    playerTwo.copyChoicesToMiniMax();
 
     //console.log("player 1: " + playerOne.minimaxChoices);
     //console.log("player 2: " + playerTwo.minimaxChoices);
