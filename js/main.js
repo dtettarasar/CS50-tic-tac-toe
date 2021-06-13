@@ -153,8 +153,37 @@ function checkWinner(board) {
 
     }
 
+    /*
     console.log("player one choices: " + playerOneChoices);
     console.log("player two choices: " + playerTwoChoices);
+    */
+
+    function victoryTester(array) {
+        for (let i = 0; i < victories.length; i++) {
+            let vicChecker = victories[i].every(value => array.includes(value));
+            if (vicChecker) {
+                return vicChecker;
+            }
+        }
+        return false;
+    }
+
+    const playerOneVic = victoryTester(playerOneChoices);
+    const playerTwoVic = victoryTester(playerTwoChoices);
+    const testTie = board.every(item => item.playerNumber !== 0);
+
+    /*
+    console.log("player One Vic: " + playerOneVic);
+    console.log("player Two Vic: " + playerTwoVic);
+    */
+
+    if (playerOneVic) {
+        return 1;
+    } else if (playerTwoVic) {
+        return 2;
+    }   else if (testTie) {
+        return 0;
+    }
 
 }
 
@@ -163,7 +192,9 @@ function getBestMove() {
 
     let currentBoard =  getCurrentBoard();
 
-    checkWinner(currentBoard);
+    let result = checkWinner(currentBoard);
+
+    console.log("score: " + result);
 
     //console.log(currentBoard);
 
@@ -175,7 +206,7 @@ function playerAiDifficult() {
     const availableCases = getAvailableCases();
     let index = availableCases[0];
 
-    getBestMove();
+    //getBestMove();
 
     playerTwo.recordChoices(index);
     playerTwo.createSymbol(index);
@@ -206,6 +237,8 @@ function checkResult() {
         console.log("Draw!");
         endGame();
     }
+
+    getBestMove();
 }
 
 function handleChoice(index, playerNum) {
