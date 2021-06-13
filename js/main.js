@@ -54,46 +54,26 @@ function Player(number, turn, symbol, gotVictory) {
     this.victoryLookUp = function(minimaxTest = false) {
         // check if a player got the victory
         // we check if a player got one of the possible winning set of choices
-        
         for (let i = 0; i < victories.length; i++) {
-            let vicChecker;
-            if (!minimaxTest) {
-                vicChecker = victories[i].every(value => this.choices.includes(value));
-                if (vicChecker) {
-                    this.gotVictory = vicChecker;
-                    return this.gotVictory;
-                }
-            } else if (minimaxTest) {
-                // the minimaxTest path will be used in minimax() to test choices
-                vicChecker = victories[i].every(value => this.minimaxChoices.includes(value));
-                //console.log(this.minimaxChoices);
-                //console.log(vicChecker);
-                if (vicChecker) {
-                    return vicChecker;
-                }
+            let vicChecker = victories[i].every(value => this.choices.includes(value));
+            if (vicChecker) {
+                this.gotVictory = vicChecker;
+                return this.gotVictory;
             }
         }
-    }
-
-    this.copyChoicesToMiniMax = function() {
-        this.minimaxChoices = [...this.choices];
-    }
-
-    this.removeChoice = function(caseId) {
-        const index = this.minimaxChoices.indexOf(caseId);
-        if (index > -1) {
-            this.minimaxChoices.splice(index, 1);
-        }
-    }
-
-    this.cleanMiniMax = function() {
-        this.minimaxChoices = [];
     }
 }
 
 // create the players
 let playerOne = new Player(1, true, "circle", false);
 let playerTwo = new Player(2, false, "cross", false);
+
+function removeChoiceFromBoard(board, caseId) {
+    const index = board.indexOf(caseId);
+    if (index > -1) {
+        board.splice(index, 1);
+    }
+}
 
 function playersTurn() {
     playerOne.updateTurn();
@@ -112,152 +92,6 @@ function getAvailableCases() {
 
     return availableCases;
 }
-
-function minimax() {
-
-    let numberOfTakenCase = playerOne.minimaxChoices.length + playerTwo.minimaxChoices.length;
-
-    let score;
-
-    if (playerTwo.victoryLookUp(true)) {
-        score = 10;
-        console.log(playerTwo.minimaxChoices);
-        console.log("score: " + score);
-        return score;
-    } else if (playerOne.victoryLookUp(true)) {
-        score = -10;
-        console.log(playerOne.minimaxChoices);
-        console.log("score: " + score);
-        return score;
-    } else if (numberOfTakenCase == 9) {
-        score = 0;
-        return score;
-    }
-
-    console.log(playerTwo.minimaxChoices);
-
-    console.log("number of taken case: " + numberOfTakenCase);
-
-    /* Trouver un moyen de tracker la longueur des case disponible au fil du process avec minimax. Sinon risque de boucle infini */
-
-    return score;
-}
-
-function getBestMove() {
-
-    const board = getAvailableCases();
-    let bestScore = -Infinity;
-    let bestMove;
-
-    playerOne.copyChoicesToMiniMax();
-    playerTwo.copyChoicesToMiniMax();
-
-    //console.log("player 1: " + playerOne.minimaxChoices);
-    //console.log("player 2: " + playerTwo.minimaxChoices);
-    //console.log("board: " + board);
-
-    //console.log(board.length);
-
-    for (let i = 0; i < board.length; i++) {
-
-        playerTwo.minimaxChoices.push(board[i]);
-        let score = minimax();
-        //console.log(score);
-        playerTwo.removeChoice(board[i]);
-        
-        if (score > bestScore) {
-            bestScore = score;
-            bestMove = board[i];
-        }
-    }
-
-    /*
-    playerOne.cleanMiniMax();
-    console.log("player 1: " + playerOne.minimaxChoices);
-    */
-
-    return bestMove;
-
-}
-
-/*
-function minimax(board, testChoice, aiTurn, depth, firstExec) {
-
-    let testCpuVictory;
-    let testPlayerVictory;
-
-    function cleanTestVic() {
-        testCpuVictory = null;
-        testPlayerVictory = null;
-    }
-
-    if (firstExec) {
-        playerOne.minimaxChoices = [...playerOne.choices];
-        playerTwo.minimaxChoices = [...playerTwo.choices];
-    }
-
-    if (aiTurn && !playerTwo.minimaxChoices.includes(testChoice)) {
-        playerTwo.minimaxChoices.push(testChoice);
-        testCpuVictory = playerTwo.victoryLookUp(playerTwo.minimaxChoices, true);
-        //console.log("cpuvic: " + testCpuVictory);
-
-    } else if (!playerOne.minimaxChoices.includes(testChoice)) {
-        playerOne.minimaxChoices.push(testChoice);
-        testPlayerVictory = playerOne.victoryLookUp(playerOne.minimaxChoices, true);
-        //console.log("playervic: " + testPlayerVictory);
-    }
-  
-     //console.log(boardCopy);
-
-    let score;
-
-    if (testCpuVictory && aiTurn) {
-        score = 10;
-        return score;
-    } else if (testPlayerVictory && !aiTurn) {
-        score = -10;
-        return score;
-    } else if (playerOne.minimaxChoices.length + playerTwo.minimaxChoices.length == 9) {
-        score = 0;
-        return score;
-    }
-    
-    if (aiTurn) {
-
-        let bestScore = -Infinity;
-        for (let i = 0; i < board.length; i++) {
-            if (!playerTwo.minimaxChoices.includes(board[i])){
-                let testScore = minimax(board, board[i], false, depth + 1, false);
-                bestScore = Math.max(testScore, bestScore);
-                console.log("AI score");
-                console.log(testScore);
-            }
-            //console.log("AI score");
-            //console.log(bestScore);
-        }
-        return bestScore;
-
-    } else {
-
-        let bestScore = Infinity;
-        for (let i = 0; i < board.length; i++) {
-            if(!playerOne.minimaxChoices.includes(board[i])){
-                let testScore = minimax(board, board[i], true, depth + 1, false);
-                bestScore = Math.min(testScore, bestScore);
-                console.log("Player score");
-                console.log(testScore);
-            }
-            //console.log("Player score");
-            //console.log(bestScore);
-        }
-        return bestScore;
-    }
-
-    //console.log(choiceResult);
-    //return score;
-    
-
-}*/
 
 function playerAiEasy(computer) {
 
@@ -279,8 +113,6 @@ function playerAiDifficult() {
     const availableCases = getAvailableCases();
     let index = availableCases[0];
     let testResult;  
-
-    getBestMove();
 
     playerTwo.recordChoices(index);
     playerTwo.createSymbol(index);
@@ -356,8 +188,6 @@ function endGame() {
     gameFinished = true;
     console.log("end of the game!");
 }
-
-
 
 function loadCaseEvnt(playerNum) {
     for(let i=0; i< cases.length; i++) {
