@@ -137,14 +137,45 @@ function getCurrentBoard() {
 
 }
 
+function checkWinner(board) {
+
+    let playerOneChoices = [];
+    let playerTwoChoices = [];
+
+    for (let i = 0; i < board.length; i++) {
+        //console.log(board[i]);
+
+        if (board[i].playerNumber == 1) {
+            playerOneChoices.push(board[i].caseId);
+        } else if (board[i].playerNumber == 2) {
+            playerTwoChoices.push(board[i].caseId);
+        }
+
+    }
+
+    console.log("player one choices: " + playerOneChoices);
+    console.log("player two choices: " + playerTwoChoices);
+
+}
+
+function getBestMove() {
+    let bestMove;
+
+    let currentBoard =  getCurrentBoard();
+
+    checkWinner(currentBoard);
+
+    //console.log(currentBoard);
+
+    return bestMove;
+}
+
 function playerAiDifficult() {
 
     const availableCases = getAvailableCases();
     let index = availableCases[0];
 
-    let currentBoard =  getCurrentBoard();
-
-    console.log(currentBoard);
+    getBestMove();
 
     playerTwo.recordChoices(index);
     playerTwo.createSymbol(index);
