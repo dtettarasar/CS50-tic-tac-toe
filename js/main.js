@@ -110,32 +110,30 @@ function playerAiEasy(computer) {
 
 function getCurrentBoard() {
 
-    const board = {};
-
-    board.caseList = [];
-
-    board.remainingCase = 0;
+    currentBoard = [];
 
     for (let i = 0; i < 9; i++) {
 
         let caseInfo = {
             caseId: i,
-            playerNumber: null
+            playerNumber: 0
         }
 
         if (playerOne.choices.includes(i)) {
             caseInfo.playerNumber = playerOne.number;
         } else if (playerTwo.choices.includes(i)) {
             caseInfo.playerNumber = playerTwo.number;
-        } else {
-            board.remainingCase++;
-        }
+        } 
 
-        board.caseList.push(caseInfo);
+        currentBoard.push(caseInfo);
 
     }
 
-    console.log(board);
+    //const testTie = caseList.every(item => item.playerNumber !== 0);
+
+    //console.log(caseList);
+
+    return currentBoard;
 
 }
 
@@ -144,7 +142,9 @@ function playerAiDifficult() {
     const availableCases = getAvailableCases();
     let index = availableCases[0];
 
-    getCurrentBoard();
+    let currentBoard =  getCurrentBoard();
+
+    console.log(currentBoard);
 
     playerTwo.recordChoices(index);
     playerTwo.createSymbol(index);
