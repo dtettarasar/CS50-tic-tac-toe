@@ -193,6 +193,14 @@ function minimax(board) {
     let result = checkWinner(board);
     console.log(result);
 
+    if (result == 2) {
+        return 10;
+    } else if (result == 1) {
+        return -10;
+    } else if (result == 0) {
+        return 0;
+    }
+
     //to do
 }
 
@@ -201,15 +209,16 @@ function getBestMove() {
     let bestScore = -Infinity;
     let bestMove;
     let currentBoard = getCurrentBoard();
-
-    //currentBoard[8].playerNumber = 30;
     
     for (let i = 0; i < currentBoard.length; i++) {
         if (currentBoard[i].playerNumber == 0) {
+
+            // if the case is available : the ai test the choice of this case
             currentBoard[i].playerNumber = 2;
             let score = minimax(currentBoard);
             currentBoard[i].playerNumber = 0;
-            //let score = minimax(currentBoard);
+
+            // if it gets a better score, save the score and the case for the upcoming move
             if (score > bestScore) {
                 bestScore = score;
                 bestMove = currentBoard[i].caseId;
@@ -218,11 +227,8 @@ function getBestMove() {
 
     }
 
-    //let result = checkWinner(currentBoard);
-
-    //console.log("score: " + result);
-
-    //console.log(currentBoard);
+    console.log("best score: " + bestScore);
+    console.log("best move: " + bestMove);
 
     return bestMove;
 }
