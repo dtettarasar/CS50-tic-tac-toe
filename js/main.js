@@ -179,7 +179,7 @@ Based on the tutorial:
 Tic Tac Toe AI with Minimax Algorithm
 The Coding Train / Daniel Shiffman
 https://thecodingtrain.com/CodingChallenges/154-tic-tac-toe-minimax.html
-https://youtu.be/I64-UTORVfU
+https://www.youtube.com/watch?v=trKjYdBASyQ
 https://editor.p5js.org/codingtrain/sketches/0zyUhZdJD
 **/
 
