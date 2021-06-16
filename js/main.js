@@ -129,10 +129,6 @@ function getCurrentBoard() {
 
     }
 
-    //const testTie = caseList.every(item => item.playerNumber !== 0);
-
-    //console.log(caseList);
-
     return currentBoard;
 
 }
@@ -143,7 +139,6 @@ function checkWinner(board) {
     let playerTwoChoices = [];
 
     for (let i = 0; i < board.length; i++) {
-        //console.log(board[i]);
 
         if (board[i].playerNumber == 1) {
             playerOneChoices.push(board[i].caseId);
@@ -152,11 +147,6 @@ function checkWinner(board) {
         }
 
     }
-
-    /*
-    console.log("player one choices: " + playerOneChoices);
-    console.log("player two choices: " + playerTwoChoices);
-    */
 
     function victoryTester(array) {
         for (let i = 0; i < victories.length; i++) {
@@ -172,11 +162,6 @@ function checkWinner(board) {
     const playerTwoVic = victoryTester(playerTwoChoices);
     const testTie = board.every(item => item.playerNumber !== 0);
 
-    /*
-    console.log("player One Vic: " + playerOneVic);
-    console.log("player Two Vic: " + playerTwoVic);
-    */
-
     if (playerOneVic) {
         return 1;
     } else if (playerTwoVic) {
@@ -187,7 +172,7 @@ function checkWinner(board) {
 
 }
 
-function minimax(board) {
+function minimax(board, aiTurn) {
 
     console.log(JSON.parse(JSON.stringify(board)));
     let result = checkWinner(board);
@@ -201,7 +186,36 @@ function minimax(board) {
         return 0;
     }
 
-    //to do
+    if (aiTurn) {
+        let bestScore = -Infinity;
+        for (let i = 0; i < board.length; i++) {
+            if(board[i].playerNumber == 0) {
+                board[i].playerNumber = 2;
+                let score = minimax(board, false);
+                board[i].playerNumber = 0;
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMove = currentBoard[i].caseId;
+                }
+            }
+        }
+        return bestScore;
+    } else {
+        let bestScore = Infinity;
+        for (let i = 0; i < board.length; i++) {
+            if(board[i].playerNumber == 0) {
+                board[i].playerNumber = 1;
+                let score = minimax(board, true);
+                board[i].playerNumber = 0;
+                if (score < bestScore) {
+                    bestScore = score;
+                    bestMove = currentBoard[i].caseId;
+                }
+            }
+        }
+        return bestScore;
+    }
+
 }
 
 function getBestMove() {
@@ -215,7 +229,7 @@ function getBestMove() {
 
             // if the case is available : the ai test the choice of this case
             currentBoard[i].playerNumber = 2;
-            let score = minimax(currentBoard);
+            let score = minimax(currentBoard, false);
             currentBoard[i].playerNumber = 0;
 
             // if it gets a better score, save the score and the case for the upcoming move
@@ -238,7 +252,11 @@ function playerAiDifficult() {
     const availableCases = getAvailableCases();
     let index = availableCases[0];
 
-    getBestMove();
+    const bestMove = getBestMove();
+
+    if (bestMove) {
+        index = bestMove;
+    }
 
     playerTwo.recordChoices(index);
     playerTwo.createSymbol(index);
@@ -253,12 +271,6 @@ function checkResult() {
     playerOne.victoryLookUp();
     playerTwo.victoryLookUp();
 
-    //console.log(playerOne.gotVictory);
-    //console.log(playerTwo.gotVictory);
-
-    //victory lookup test with "Ai mode"
-    //console.log(playerTwo.victoryLookUp([2,0,1], true));
-
     if (playerOne.gotVictory) {
         console.log("player One win!");
         endGame();
@@ -270,7 +282,6 @@ function checkResult() {
         endGame();
     }
 
-    //getBestMove();
 }
 
 function handleChoice(index, playerNum) {
