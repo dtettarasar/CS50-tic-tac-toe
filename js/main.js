@@ -188,6 +188,11 @@ function checkWinner(board) {
 }
 
 function minimax(board) {
+
+    console.log(JSON.parse(JSON.stringify(board)));
+    let result = checkWinner(board);
+    console.log(result);
+
     //to do
 }
 
@@ -195,23 +200,25 @@ function getBestMove() {
 
     let bestScore = -Infinity;
     let bestMove;
-    let currentBoard =  getCurrentBoard();
+    let currentBoard = getCurrentBoard();
 
+    //currentBoard[8].playerNumber = 30;
+    
     for (let i = 0; i < currentBoard.length; i++) {
-        if (currentBoard[i].playerNumber == 0){
+        if (currentBoard[i].playerNumber == 0) {
             currentBoard[i].playerNumber = 2;
             let score = minimax(currentBoard);
             currentBoard[i].playerNumber = 0;
+            //let score = minimax(currentBoard);
             if (score > bestScore) {
                 bestScore = score;
                 bestMove = currentBoard[i].caseId;
             }
         }
-        console.log (currentBoard);
 
     }
 
-    let result = checkWinner(currentBoard);
+    //let result = checkWinner(currentBoard);
 
     //console.log("score: " + result);
 
