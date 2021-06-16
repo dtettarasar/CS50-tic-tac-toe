@@ -172,11 +172,21 @@ function checkWinner(board) {
 
 }
 
+/**
+Minimax function for the difficult AI mode.
+Based on the tutorial: 
+
+Tic Tac Toe AI with Minimax Algorithm
+The Coding Train / Daniel Shiffman
+https://thecodingtrain.com/CodingChallenges/154-tic-tac-toe-minimax.html
+https://youtu.be/I64-UTORVfU
+https://editor.p5js.org/codingtrain/sketches/0zyUhZdJD
+**/
+
 function minimax(board, aiTurn) {
 
     console.log(JSON.parse(JSON.stringify(board)));
     let result = checkWinner(board);
-    console.log(result);
 
     if (result == 2) {
         return 10;
