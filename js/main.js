@@ -358,9 +358,11 @@ function cleanGame() {
     playerTwo.gotVictory = false;
     playerOne.turn = true;
     playerTwo.turn = false;
+    difficultAi = null;
+
     let symbolArr = Array.from(document.querySelectorAll(".symbol"));
     for (let i = 0; i < symbolArr.length; i++) {
-        console.log(symbolArr[i]);
+        //console.log(symbolArr[i]);
         symbolArr[i].remove();
     }
     //console.log(symbolList);
