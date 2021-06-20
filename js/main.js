@@ -367,11 +367,13 @@ function cleanGame() {
 // function to end the game
 function endGame() {
     gameFinished = true;
-    let firstBtnArr = Array.from(document.querySelectorAll(".first-btn"));
-    for (let i=0; i< firstBtnArr.length; i++) {
-        firstBtnArr[i].style.display = "none";
-    }
-    //popUp.style.display = "block";
+
+    onePGameEasyBtn.style.display = "none";
+    onePGameDiffBtn.style.display = "none";
+    twoPGameBtn.style.display = "none";
+    playAgainBtn.style.display = "block";
+    changGameBtn.style.display = "block";
+
     console.log("end of the game!");
 }
 
