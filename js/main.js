@@ -330,13 +330,19 @@ function handleChoice(index, playerNum) {
 function cleanGame() {
     // todo
     console.log("clean the game to do");
-    console.log(playerTwo.gotVictory);
+    //console.log(playerTwo.gotVictory);
     chosenCases = [];
     playerOne.choices = [];
     playerTwo.choices = [];
     playerOne.gotVictory = false;
     playerTwo.gotVictory = false;
-    console.log(playerTwo.gotVictory);
+    let symbolArr = Array.from(document.querySelectorAll(".symbol"));
+    for (let i = 0; i < symbolArr.length; i++) {
+        console.log(symbolArr[i]);
+        symbolArr[i].remove();
+    }
+    //console.log(symbolList);
+    //console.log(playerTwo.gotVictory);
 }
 
 // function to end the game
