@@ -274,15 +274,35 @@ function checkResult() {
     playerOne.victoryLookUp();
     playerTwo.victoryLookUp();
 
+    // setTimeout(() => {  console.log("World!"); }, 2000);
+
     if (playerOne.gotVictory) {
+        setTimeout(() => {
+            console.log("player One win!");
+            endGame();
+        }, 1500);
+        /*
         console.log("player One win!");
         endGame();
+        */
     } else if (playerTwo.gotVictory) {
+        setTimeout(() => {
+            console.log("player Two win!");
+            endGame();
+        }, 1500);
+        /*
         console.log("player Two win!");
         endGame();
+        */
     } else if (chosenCases.length == 9) {
+        setTimeout(() => {
+            console.log("Draw;");
+            endGame();
+        }, 1500);
+        /*
         console.log("Draw!");
         endGame();
+        */
     }
 
 }
