@@ -315,10 +315,12 @@ function handleChoice(index, playerNum) {
 
     } else if (playerNum == 1) {
         
-        playerOne.recordChoices(index);
-        playerOne.createSymbol(index);
-        playersTurn();
-        checkResult();
+        if (playerOne.turn && !chosenCases.includes(index)) {
+            playerOne.recordChoices(index);
+            playerOne.createSymbol(index);
+            playersTurn();
+            checkResult();
+        }
 
         if (playerTwo.turn && !playerOne.gotVictory && chosenCases.length < 9) {
             if (difficultAi) {
