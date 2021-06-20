@@ -8,6 +8,7 @@ const cases = Array.from(document.querySelectorAll("[id^=case]"));
 let gameFinished;
 let chosenCases = [];
 let difficultAi;
+let numberOfPlayer;
 
 // this array store all the cases combinations that gives the victory
 const victories = [
@@ -274,41 +275,32 @@ function checkResult() {
     playerOne.victoryLookUp();
     playerTwo.victoryLookUp();
 
-    // setTimeout(() => {  console.log("World!"); }, 2000);
-
     if (playerOne.gotVictory) {
+        endGame();
         setTimeout(() => {
             console.log("player One win!");
-            endGame();
+            popUp.style.display = "block";
         }, 1500);
-        /*
-        console.log("player One win!");
-        endGame();
-        */
     } else if (playerTwo.gotVictory) {
+        endGame();
         setTimeout(() => {
             console.log("player Two win!");
-            endGame();
+            popUp.style.display = "block";
         }, 1500);
-        /*
-        console.log("player Two win!");
-        endGame();
-        */
     } else if (chosenCases.length == 9) {
-        setTimeout(() => {
-            console.log("Draw;");
-            endGame();
-        }, 1500);
-        /*
-        console.log("Draw!");
         endGame();
-        */
+        setTimeout(() => {
+            console.log("Draw");
+            popUp.style.display = "block";
+        }, 1500);
     }
 
 }
 
 function handleChoice(index, playerNum) {
     // handle player's choice & turns
+
+    console.log("player num from handle choice " + playerNum);
 
     if (playerNum == 2) {
 
@@ -349,8 +341,7 @@ function handleChoice(index, playerNum) {
 
 function cleanGame() {
     // todo
-    console.log("clean the game to do");
-    //console.log(playerTwo.gotVictory);
+    console.log("clean the game");
     chosenCases = [];
     playerOne.choices = [];
     playerTwo.choices = [];
@@ -358,25 +349,23 @@ function cleanGame() {
     playerTwo.gotVictory = false;
     playerOne.turn = true;
     playerTwo.turn = false;
-    difficultAi = null;
 
     let symbolArr = Array.from(document.querySelectorAll(".symbol"));
     for (let i = 0; i < symbolArr.length; i++) {
-        //console.log(symbolArr[i]);
         symbolArr[i].remove();
     }
-    //console.log(symbolList);
-    //console.log(playerTwo.gotVictory);
 }
 
 // function to end the game
 function endGame() {
     gameFinished = true;
-    popUp.style.display = "block";
+    //popUp.style.display = "block";
     console.log("end of the game!");
 }
 
+// TO DO : update the function to handle multiple games
 function loadCaseEvnt(playerNum) {
+    console.log("player num from loadcase " + playerNum);
     for(let i=0; i< cases.length; i++) {
         cases[i].addEventListener("click", function casesEvent() {
             if (!gameFinished) {
@@ -388,8 +377,11 @@ function loadCaseEvnt(playerNum) {
     
 function startGame(playerNum) {
 
+    console.log("player Num: " + playerNum);
+
     if (gameFinished) {
         cleanGame();
+        console.log("difficult AI " + difficultAi);
     }
 
     gameFinished = false;
@@ -404,6 +396,7 @@ onePGameEasyBtn.addEventListener("click", function() {
 
 onePGameDiffBtn.addEventListener("click", function() {
     difficultAi = true;
+    console.log("diff ai on click " + difficultAi);
     startGame(1);
 });
     
