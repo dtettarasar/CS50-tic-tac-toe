@@ -422,3 +422,7 @@ twoPGameBtn.addEventListener("click", function() {
     gameModeSelected = 3;
     startGame(2);
 });
+
+changGameBtn.addEventListener("click", () => {
+    location.reload();
+});
