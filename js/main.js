@@ -8,7 +8,6 @@ const cases = Array.from(document.querySelectorAll("[id^=case]"));
 let gameFinished;
 let chosenCases = [];
 let difficultAi;
-let numberOfPlayer;
 
 // this array store all the cases combinations that gives the victory
 const victories = [
@@ -339,6 +338,7 @@ function handleChoice(index, playerNum) {
 
 }
 
+/*
 function cleanGame() {
     // todo
     console.log("clean the game");
@@ -355,10 +355,15 @@ function cleanGame() {
         symbolArr[i].remove();
     }
 }
+*/
 
 // function to end the game
 function endGame() {
     gameFinished = true;
+    let firstBtnArr = Array.from(document.querySelectorAll(".first-btn"));
+    for (let i=0; i< firstBtnArr.length; i++) {
+        firstBtnArr[i].style.display = "none";
+    }
     //popUp.style.display = "block";
     console.log("end of the game!");
 }
@@ -379,10 +384,11 @@ function startGame(playerNum) {
 
     console.log("player Num: " + playerNum);
 
+    /*
     if (gameFinished) {
         cleanGame();
         console.log("difficult AI " + difficultAi);
-    }
+    }*/
 
     gameFinished = false;
     popUp.style.display = "none";
