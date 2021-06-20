@@ -356,6 +356,8 @@ function cleanGame() {
     playerTwo.choices = [];
     playerOne.gotVictory = false;
     playerTwo.gotVictory = false;
+    playerOne.turn = true;
+    playerTwo.turn = false;
     let symbolArr = Array.from(document.querySelectorAll(".symbol"));
     for (let i = 0; i < symbolArr.length; i++) {
         console.log(symbolArr[i]);
