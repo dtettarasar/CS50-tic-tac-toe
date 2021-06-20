@@ -28,7 +28,6 @@ function Player(number, turn, symbol, gotVictory) {
     this.turn = turn;
     this.symbol = symbol;
     this.choices = [];
-    this.minimaxChoices = [];
     this.gotVictory = gotVictory;
 
     this.createSymbol = function(caseId) {
@@ -330,16 +329,19 @@ function handleChoice(index, playerNum) {
 
 function cleanGame() {
     // todo
-    console.log(chosenCases);
+    console.log("clean the game to do");
+    //gotVictory
+    console.log(playerTwo.choices);
     chosenCases = [];
-    console.log(chosenCases);
+    playerOne.choices = [];
+    playerTwo.choices = [];
+    console.log(playerTwo.choices);
 }
 
 // function to end the game
 function endGame() {
     gameFinished = true;
-    //popUp.style.display = "block";
-    cleanGame();
+    popUp.style.display = "block";
     console.log("end of the game!");
 }
 
@@ -354,6 +356,11 @@ function loadCaseEvnt(playerNum) {
 }
     
 function startGame(playerNum) {
+
+    if (gameFinished) {
+        cleanGame();
+    }
+
     gameFinished = false;
     popUp.style.display = "none";
     loadCaseEvnt(playerNum);
