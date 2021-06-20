@@ -58,30 +58,36 @@ body
 }
 
 [id^=play-1p]:hover,
-#play-2p:hover
+#play-2p:hover,
+#play-again:hover,
+#cg-game:hover
 {
     color: #ecf0f1;
     border-color: #ecf0f1;
 }
 
-[id^=play-1p]
+[id^=play-1p],
+#play-again
 {
     color: #e67e22;
     border-color: #e67e22;
 }
 
-[id^=play-1p]:hover
+[id^=play-1p]:hover,
+#play-again:hover
 {
     background-color: #e67e22;
 }
 
-#play-2p
+#play-2p,
+#cg-game
 {
     color: #3498db;
     border-color: #3498db;
 }
 
-#play-2p:hover
+#play-2p:hover,
+#cg-game:hover
 {
     background-color: #3498db;
 }

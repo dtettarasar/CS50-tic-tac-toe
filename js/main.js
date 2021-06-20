@@ -4,10 +4,13 @@ const popUp = document.querySelector("#pop-up");
 const onePGameEasyBtn = document.querySelector("#play-1p-easy");
 const onePGameDiffBtn = document.querySelector("#play-1p-difficult");
 const twoPGameBtn = document.querySelector("#play-2p");
+const playAgainBtn = document.querySelector("#play-again");
+const changGameBtn = document.querySelector("#cg-game");
 const cases = Array.from(document.querySelectorAll("[id^=case]"));
 let gameFinished;
 let chosenCases = [];
 let difficultAi;
+let gameModeSelected;
 
 // this array store all the cases combinations that gives the victory
 const victories = [
@@ -66,6 +69,10 @@ function Player(number, turn, symbol, gotVictory) {
 // create the players
 let playerOne = new Player(1, true, "circle", false);
 let playerTwo = new Player(2, false, "cross", false);
+
+// hide the button we'll need after the first game, for now
+playAgainBtn.style.display = "none";
+changGameBtn.style.display = "none";
 
 function playersTurn() {
     playerOne.updateTurn();
@@ -397,16 +404,19 @@ function startGame(playerNum) {
     
 onePGameEasyBtn.addEventListener("click", function() {
     difficultAi = false;
+    gameModeSelected = 1;
     startGame(1);
 });
 
 onePGameDiffBtn.addEventListener("click", function() {
     difficultAi = true;
-    console.log("diff ai on click " + difficultAi);
+    //console.log("diff ai on click " + difficultAi);
+    gameModeSelected = 2;
     startGame(1);
 });
     
 twoPGameBtn.addEventListener("click", function() {
     difficultAi = false;
+    gameModeSelected = 3;
     startGame(2);
 });
