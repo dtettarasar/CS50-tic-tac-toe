@@ -5,7 +5,7 @@ const onePGameEasyBtn = document.querySelector("#play-1p-easy");
 const onePGameDiffBtn = document.querySelector("#play-1p-difficult");
 const twoPGameBtn = document.querySelector("#play-2p");
 const cases = Array.from(document.querySelectorAll("[id^=case]"));
-let gameFinished = false;
+let gameFinished;
 let chosenCases = [];
 let difficultAi;
 
@@ -67,13 +67,6 @@ function Player(number, turn, symbol, gotVictory) {
 // create the players
 let playerOne = new Player(1, true, "circle", false);
 let playerTwo = new Player(2, false, "cross", false);
-
-function removeChoiceFromBoard(board, caseId) {
-    const index = board.indexOf(caseId);
-    if (index > -1) {
-        board.splice(index, 1);
-    }
-}
 
 function playersTurn() {
     playerOne.updateTurn();
@@ -186,7 +179,7 @@ Repos: https://github.com/CodingTrain/website/tree/main/CodingChallenges/CC_154_
 
 function minimax(board, aiTurn) {
 
-    console.log(JSON.parse(JSON.stringify(board)));
+    //console.log(JSON.parse(JSON.stringify(board)));
     let result = checkWinner(board);
 
     if (result == 2) {
@@ -335,9 +328,18 @@ function handleChoice(index, playerNum) {
 
 }
 
+function cleanGame() {
+    // todo
+    console.log(chosenCases);
+    chosenCases = [];
+    console.log(chosenCases);
+}
+
 // function to end the game
 function endGame() {
     gameFinished = true;
+    //popUp.style.display = "block";
+    cleanGame();
     console.log("end of the game!");
 }
 
@@ -352,6 +354,7 @@ function loadCaseEvnt(playerNum) {
 }
     
 function startGame(playerNum) {
+    gameFinished = false;
     popUp.style.display = "none";
     loadCaseEvnt(playerNum);
 }
