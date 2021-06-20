@@ -251,8 +251,10 @@ function getBestMove() {
 
     }
 
+    /*
     console.log("best score: " + bestScore);
     console.log("best move: " + bestMove);
+    */
 
     return bestMove;
 }
@@ -283,20 +285,20 @@ function checkResult() {
 
     if (playerOne.gotVictory) {
         endGame();
+        console.log("player One win!");
         setTimeout(() => {
-            console.log("player One win!");
             popUp.style.display = "block";
         }, 1500);
     } else if (playerTwo.gotVictory) {
         endGame();
+        console.log("player Two win!");
         setTimeout(() => {
-            console.log("player Two win!");
             popUp.style.display = "block";
         }, 1500);
     } else if (chosenCases.length == 9) {
         endGame();
+        console.log("Draw!");
         setTimeout(() => {
-            console.log("Draw");
             popUp.style.display = "block";
         }, 1500);
     }
@@ -305,8 +307,6 @@ function checkResult() {
 
 function handleChoice(index, playerNum) {
     // handle player's choice & turns
-
-    console.log("player num from handle choice " + playerNum);
 
     if (playerNum == 2) {
 
@@ -345,10 +345,9 @@ function handleChoice(index, playerNum) {
 
 }
 
-/*
+
 function cleanGame() {
     // todo
-    console.log("clean the game");
     chosenCases = [];
     playerOne.choices = [];
     playerTwo.choices = [];
@@ -362,7 +361,7 @@ function cleanGame() {
         symbolArr[i].remove();
     }
 }
-*/
+
 
 // function to end the game
 function endGame() {
@@ -379,7 +378,6 @@ function endGame() {
 
 // TO DO : update the function to handle multiple games
 function loadCaseEvnt(playerNum) {
-    console.log("player num from loadcase " + playerNum);
     for(let i=0; i< cases.length; i++) {
         cases[i].addEventListener("click", function casesEvent() {
             if (!gameFinished) {
@@ -391,17 +389,28 @@ function loadCaseEvnt(playerNum) {
     
 function startGame(playerNum) {
 
-    console.log("player Num: " + playerNum);
-
-    /*
-    if (gameFinished) {
-        cleanGame();
-        console.log("difficult AI " + difficultAi);
-    }*/
-
     gameFinished = false;
     popUp.style.display = "none";
+
     loadCaseEvnt(playerNum);
+}
+
+function restartGame() {
+
+    if (gameModeSelected == 1) {
+        difficultAi = false;
+        cleanGame();
+        startGame(1);
+    } else if (gameModeSelected == 2) {
+        difficultAi = true;
+        cleanGame();
+        startGame(1);
+    } else if (gameModeSelected = 3) {
+        difficultAi = false;
+        cleanGame();
+        startGame(2);
+    }
+
 }
     
 onePGameEasyBtn.addEventListener("click", function() {
@@ -412,7 +421,6 @@ onePGameEasyBtn.addEventListener("click", function() {
 
 onePGameDiffBtn.addEventListener("click", function() {
     difficultAi = true;
-    //console.log("diff ai on click " + difficultAi);
     gameModeSelected = 2;
     startGame(1);
 });
@@ -421,6 +429,10 @@ twoPGameBtn.addEventListener("click", function() {
     difficultAi = false;
     gameModeSelected = 3;
     startGame(2);
+});
+
+playAgainBtn.addEventListener("click", () => {
+    restartGame();
 });
 
 changGameBtn.addEventListener("click", () => {
