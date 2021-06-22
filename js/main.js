@@ -11,6 +11,7 @@ let gameFinished;
 let chosenCases = [];
 let difficultAi;
 let gameModeSelected;
+let numOfGamePlayed = 0;
 
 // this array store all the cases combinations that gives the victory
 const victories = [
@@ -366,6 +367,7 @@ function cleanGame() {
 // function to end the game
 function endGame() {
     gameFinished = true;
+    numOfGamePlayed++;
 
     onePGameEasyBtn.style.display = "none";
     onePGameDiffBtn.style.display = "none";
@@ -374,6 +376,7 @@ function endGame() {
     changGameBtn.style.display = "block";
 
     console.log("end of the game!");
+    console.log("num of game played: " + numOfGamePlayed);
 }
 
 // TO DO : update the function to handle multiple games
