@@ -33,6 +33,7 @@ function Player(number, turn, symbol, gotVictory) {
     this.symbol = symbol;
     this.choices = [];
     this.gotVictory = gotVictory;
+    this.score = 0;
 
     this.createSymbol = function(caseId) {
         const imgElem = document.createElement("img");
@@ -285,12 +286,14 @@ function checkResult() {
     playerTwo.victoryLookUp();
 
     if (playerOne.gotVictory) {
+        playerOne.score++;
         endGame();
         console.log("player One win!");
         setTimeout(() => {
             popUp.style.display = "block";
         }, 1500);
     } else if (playerTwo.gotVictory) {
+        playerTwo.score++;
         endGame();
         console.log("player Two win!");
         setTimeout(() => {
@@ -377,6 +380,8 @@ function endGame() {
 
     console.log("end of the game!");
     console.log("num of game played: " + numOfGamePlayed);
+    console.log("player one's score: " + playerOne.score);
+    console.log("player two's score: " + playerTwo.score);
 }
 
 // TO DO : update the function to handle multiple games
