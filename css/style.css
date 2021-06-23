@@ -67,6 +67,17 @@ body
     border-color: #ecf0f1;
 }
 
+.score-section
+{
+    width: 100%;
+    display:none;
+}
+
+.score-title
+{
+    padding:10px !important;
+}
+
 [id^=play-1p],
 #play-again
 {

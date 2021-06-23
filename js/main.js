@@ -8,6 +8,7 @@ const playAgainBtn = document.querySelector("#play-again");
 const changGameBtn = document.querySelector("#cg-game");
 const cases = Array.from(document.querySelectorAll("[id^=case]"));
 const popUpSubTitle = document.querySelector("#pop-up-sub-title");
+const scoreSection = document.querySelector(".score-section");
 let gameFinished;
 let chosenCases = [];
 let difficultAi;
@@ -381,6 +382,7 @@ function endGame() {
     twoPGameBtn.style.display = "none";
     playAgainBtn.style.display = "block";
     changGameBtn.style.display = "block";
+    scoreSection.style.display = "block";
 
     console.log("end of the game!");
     console.log("num of game played: " + numOfGamePlayed);
