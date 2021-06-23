@@ -7,6 +7,7 @@ const twoPGameBtn = document.querySelector("#play-2p");
 const playAgainBtn = document.querySelector("#play-again");
 const changGameBtn = document.querySelector("#cg-game");
 const cases = Array.from(document.querySelectorAll("[id^=case]"));
+const popUpSubTitle = document.querySelector("#pop-up-sub-title");
 let gameFinished;
 let chosenCases = [];
 let difficultAi;
@@ -289,6 +290,7 @@ function checkResult() {
         playerOne.score++;
         endGame();
         console.log("player One win!");
+        popUpSubTitle.innerHTML = "player One win!";
         setTimeout(() => {
             popUp.style.display = "block";
         }, 1500);
@@ -296,12 +298,14 @@ function checkResult() {
         playerTwo.score++;
         endGame();
         console.log("player Two win!");
+        popUpSubTitle.innerHTML = "player Two win!";
         setTimeout(() => {
             popUp.style.display = "block";
         }, 1500);
     } else if (chosenCases.length == 9) {
         endGame();
         console.log("Draw!");
+        popUpSubTitle.innerHTML = "Draw!";
         setTimeout(() => {
             popUp.style.display = "block";
         }, 1500);
