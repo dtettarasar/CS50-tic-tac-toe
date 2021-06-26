@@ -10,6 +10,8 @@ const cases = Array.from(document.querySelectorAll("[id^=case]"));
 const popUpSubTitle = document.querySelector("#pop-up-sub-title");
 const scoreSection = document.querySelector(".score-section");
 const gamesPlayedContainer = document.querySelector("#num-game-played");
+const playerOneScoreContainer = document.querySelector(".player-score-1");
+const playerTwoScoreContainer = document.querySelector(".player-score-2");
 let gameFinished;
 let chosenCases = [];
 let difficultAi;
@@ -386,6 +388,8 @@ function endGame() {
     scoreSection.style.display = "block";
 
     gamesPlayedContainer.innerHTML = numOfGamePlayed;
+    playerOneScoreContainer.innerHTML = playerOne.score;
+    playerTwoScoreContainer.innerHTML = playerTwo.score;
 
     console.log("end of the game!");
     console.log("num of game played: " + numOfGamePlayed);

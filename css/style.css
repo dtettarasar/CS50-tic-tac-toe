@@ -106,7 +106,7 @@ body
     align-items: center;
 }
 
-.player-score
+[class^=player-score]
 {
     text-align: center;
     font-size: 1.5rem
