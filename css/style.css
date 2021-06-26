@@ -78,6 +78,13 @@ body
     padding:10px !important;
 }
 
+.players-stats
+{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
 [id^=play-1p],
 #play-again
 {
