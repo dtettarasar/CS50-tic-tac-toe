@@ -73,6 +73,12 @@ body
     display:none;
 }
 
+.game-played-txt
+{
+    padding-top: 0;
+    padding-bottom: 10px;
+}
+
 .score-title
 {
     padding:10px !important;

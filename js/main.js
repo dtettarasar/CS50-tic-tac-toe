@@ -291,7 +291,7 @@ function checkResult() {
         playerOne.score++;
         endGame();
         console.log("player One win!");
-        popUpSubTitle.innerHTML = "player One win!";
+        popUpSubTitle.innerHTML = "Circle win!";
         setTimeout(() => {
             popUp.style.display = "block";
         }, 1500);
@@ -299,7 +299,7 @@ function checkResult() {
         playerTwo.score++;
         endGame();
         console.log("player Two win!");
-        popUpSubTitle.innerHTML = "player Two win!";
+        popUpSubTitle.innerHTML = "Cross win!";
         setTimeout(() => {
             popUp.style.display = "block";
         }, 1500);
