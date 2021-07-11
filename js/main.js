@@ -258,11 +258,6 @@ function getBestMove() {
 
     }
 
-    /*
-    console.log("best score: " + bestScore);
-    console.log("best move: " + bestMove);
-    */
-
     return bestMove;
 }
 
@@ -293,7 +288,6 @@ function checkResult() {
     if (playerOne.gotVictory) {
         playerOne.score++;
         endGame();
-        console.log("player One win!");
         popUpSubTitle.innerHTML = "Circle win!";
         setTimeout(() => {
             popUp.style.display = "block";
@@ -301,14 +295,12 @@ function checkResult() {
     } else if (playerTwo.gotVictory) {
         playerTwo.score++;
         endGame();
-        console.log("player Two win!");
         popUpSubTitle.innerHTML = "Cross win!";
         setTimeout(() => {
             popUp.style.display = "block";
         }, 1500);
     } else if (chosenCases.length == 9) {
         endGame();
-        console.log("Draw!");
         popUpSubTitle.innerHTML = "Draw!";
         setTimeout(() => {
             popUp.style.display = "block";
@@ -391,10 +383,6 @@ function endGame() {
     playerOneScoreContainer.innerHTML = playerOne.score;
     playerTwoScoreContainer.innerHTML = playerTwo.score;
 
-    console.log("end of the game!");
-    console.log("num of game played: " + numOfGamePlayed);
-    console.log("player one's score: " + playerOne.score);
-    console.log("player two's score: " + playerTwo.score);
 }
 
 // TO DO : update the function to handle multiple games
