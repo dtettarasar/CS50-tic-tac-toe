@@ -1,12 +1,14 @@
 # CS50x - Tic Tac Toe
 
-## Video Demo:  https://www.youtube.com/watch?v=jnWGF0sQf5U
+## Video Demo:  
+
+https://www.youtube.com/watch?v=jnWGF0sQf5U
 
 ## Description:
 
 Source code for my CS50x's final project
 
-The project is a Tic Tac Toe Game, running in the browser. Built with HTML, CSS and JS. 
+The project is a Tic Tac Toe Game, running in the browser. **Built with HTML, CSS and JS**. 
 
 The game allows you to choose between **3 game modes** : 
 
@@ -16,7 +18,7 @@ The game allows you to choose between **3 game modes** :
 
 At the end of each game, the scores for each players are displayed. And the number of games played are also tracked. You'll get options to play again or, change game mode.
 
-**About the Minimax tutorial**
+**About the Minimax tutorial**:
 
 Tic Tac Toe AI with Minimax Algorithm
 The Coding Train / Daniel Shiffman
@@ -26,16 +28,16 @@ The Coding Train / Daniel Shiffman
 - https://editor.p5js.org/codingtrain/sketches/0zyUhZdJD
 - Repos: https://github.com/CodingTrain/website/tree/main/CodingChallenges/CC_154_Tic_Tac_Toe_Minimax/P5
 
-**Icons (cross & circle's svg files) from Flaticon**
+**Icons (cross & circle's svg files) from Flaticon**:
 
 Freepik: https://www.freepik.com
 Pixel perfect: https://www.flaticon.com/authors/pixel-perfect
 
-## Possible improvements
+## Possible improvements:
 
 to do
 
-## How to launch the game 
+## How to launch the game:
 
 to do
 
