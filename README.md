@@ -35,7 +35,7 @@ Pixel perfect: https://www.flaticon.com/authors/pixel-perfect
 
 ## Possible improvements:
 
-- Improve the minimax algorithm, by adding **alpha-beta pruning** : it is useful to recall that the minimax algorithm is using a search tree to work and calculate every possible moves for the AI. using the alpha-beta pruning algorithm, within the minimax algorithm, permits to reduce the number of nodes, in the search tree, thus making the minimax algorithm, more efficient.
+- Improve the minimax algorithm, by adding **alpha-beta pruning** : it is useful to recall that the minimax algorithm is using a search tree to work and calculate every possible moves for the AI. Using the alpha-beta pruning algorithm, within the minimax algorithm, permits to reduce the number of nodes, in the search tree, thus making the minimax algorithm, more efficient.
 - For the minimax algorithm : **use depth**, for better scoring calculation
 - **Adding CSS animations** to make the game looks better
 - Improve the JS script to **make it more "ES compliant"** (more arrow functions, for/of loop...)
@@ -45,7 +45,8 @@ Pixel perfect: https://www.flaticon.com/authors/pixel-perfect
 
 As it is a web game, simply using HTML, CSS and JS, there are no particular things to do: you can just download the source code and run it, on a local server, and you should be able to test the game. Or even just open the index.html file, by double clicking it, on your file explorer.
 
-**Get the code**
+**Get the code**:
+
 If you don't have the BASH terminal on your system, just download the ZIP file, on the github page of the project
 
 If you have the BASH terminal, then type the following command : 
