@@ -21,10 +21,10 @@ At the end of each game, the scores for each players are displayed. And the numb
 Tic Tac Toe AI with Minimax Algorithm
 The Coding Train / Daniel Shiffman
 
-https://thecodingtrain.com/CodingChallenges/154-tic-tac-toe-minimax.html
-https://www.youtube.com/watch?v=trKjYdBASyQ
-https://editor.p5js.org/codingtrain/sketches/0zyUhZdJD
-Repos: https://github.com/CodingTrain/website/tree/main/CodingChallenges/CC_154_Tic_Tac_Toe_Minimax/P5
+- https://thecodingtrain.com/CodingChallenges/154-tic-tac-toe-minimax.html
+- https://www.youtube.com/watch?v=trKjYdBASyQ
+- https://editor.p5js.org/codingtrain/sketches/0zyUhZdJD
+- Repos: https://github.com/CodingTrain/website/tree/main/CodingChallenges/CC_154_Tic_Tac_Toe_Minimax/P5
 
 **Icons (cross & circle's svg files) from Flaticon**
 
