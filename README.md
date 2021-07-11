@@ -1,8 +1,8 @@
 # CS50x - Tic Tac Toe
 
-#### Video Demo:  https://www.youtube.com/watch?v=jnWGF0sQf5U
+## Video Demo:  https://www.youtube.com/watch?v=jnWGF0sQf5U
 
-#### Description:
+## Description:
 
 Source code for my CS50x's final project
 
@@ -30,6 +30,14 @@ The Coding Train / Daniel Shiffman
 
 Freepik: https://www.freepik.com
 Pixel perfect: https://www.flaticon.com/authors/pixel-perfect
+
+## Possible improvements
+
+to do
+
+## How to launch the game 
+
+to do
 
 Have fun with the game!
 This was CS50x!
