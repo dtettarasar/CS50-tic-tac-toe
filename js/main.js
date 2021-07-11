@@ -434,19 +434,19 @@ function restartGame() {
 
 }
     
-onePGameEasyBtn.addEventListener("click", function() {
+onePGameEasyBtn.addEventListener("click", () => {
     difficultAi = false;
     gameModeSelected = 1;
     startGame(1);
 });
 
-onePGameDiffBtn.addEventListener("click", function() {
+onePGameDiffBtn.addEventListener("click", () => {
     difficultAi = true;
     gameModeSelected = 2;
     startGame(1);
 });
     
-twoPGameBtn.addEventListener("click", function() {
+twoPGameBtn.addEventListener("click", () => {
     difficultAi = false;
     gameModeSelected = 3;
     startGame(2);
