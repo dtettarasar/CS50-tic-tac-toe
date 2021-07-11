@@ -56,6 +56,11 @@ function Player(number, turn, symbol, gotVictory) {
         }
     }
 
+    this.makeChoice = function(caseId) {
+        this.createSymbol(caseId);
+        this.recordChoices(caseId);
+    }
+
     this.updateTurn = function() {
         this.turn = !this.turn;
     }
@@ -107,13 +112,13 @@ function playerAiEasy(computer) {
     const random = Math.floor(Math.random() * availableCases.length);
 
     if (!gameFinished) {
-        computer.recordChoices(availableCases[random]);
-        computer.createSymbol(availableCases[random]);
+       computer.makeChoice(availableCases[random]);
     }
 
     playersTurn();
 }
 
+// get a current state of the game board, for the minimax function 
 function getCurrentBoard() {
 
     currentBoard = [];
@@ -139,6 +144,7 @@ function getCurrentBoard() {
 
 }
 
+// function that will check if a winner is found, based on a game board, passed as argument. This is required for the minimax function
 function checkWinner(board) {
 
     let playerOneChoices = [];
@@ -272,8 +278,7 @@ function playerAiDifficult() {
         index = bestMove;
     }
 
-    playerTwo.recordChoices(index);
-    playerTwo.createSymbol(index);
+    playerTwo.makeChoice(index);
 
     playersTurn();
 }
@@ -315,14 +320,12 @@ function handleChoice(index, playerNum) {
     if (playerNum == 2) {
 
         if (playerOne.turn && !chosenCases.includes(index)) {
-            playerOne.recordChoices(index);
-            playerOne.createSymbol(index);
+            playerOne.makeChoice(index);
             playersTurn();
             checkResult();
     
         } else if (playerTwo.turn && !chosenCases.includes(index)) {
-            playerTwo.recordChoices(index);
-            playerTwo.createSymbol(index);
+            playerTwo.makeChoice(index);
             playersTurn();
             checkResult();
         }
@@ -330,8 +333,7 @@ function handleChoice(index, playerNum) {
     } else if (playerNum == 1) {
         
         if (playerOne.turn && !chosenCases.includes(index)) {
-            playerOne.recordChoices(index);
-            playerOne.createSymbol(index);
+            playerOne.makeChoice(index);
             playersTurn();
             checkResult();
         }
