@@ -351,9 +351,8 @@ function handleChoice(index, playerNum) {
 
 }
 
-
+// function to clean the game & the datas required to be empty, before a new game
 function cleanGame() {
-    // todo
     chosenCases = [];
     playerOne.choices = [];
     playerTwo.choices = [];
@@ -387,7 +386,6 @@ function endGame() {
 
 }
 
-// TO DO : update the function to handle multiple games
 function loadCaseEvnt(playerNum) {
     for(let i=0; i< cases.length; i++) {
         cases[i].addEventListener("click", function casesEvent() {
