@@ -38,7 +38,7 @@ Pixel perfect: https://www.flaticon.com/authors/pixel-perfect
 - Improve the minimax algorithm, by adding **alpha-beta pruning** : it is useful to recall that the minimax algorithm is using a search tree to work and calculate every possible moves for the AI. Using the alpha-beta pruning algorithm, within the minimax algorithm, permits to reduce the number of nodes, in the search tree, thus making the minimax algorithm, more efficient.
 - For the minimax algorithm : **use depth**, for better scoring calculation
 - **Adding CSS animations** to make the game looks better
-- Improve the JS script to **make it more "ES compliant"** (more arrow functions, for/of loop...)
+- Improve the JS script to **make it more "ES6 compliant"** (more arrow functions, for/of loop...)
 - **Reduce / Optimize the numbers of functions** in the script to make it lighter
 
 ## How to launch the game:
